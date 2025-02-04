@@ -25,7 +25,7 @@ endif()
 
 install(DIRECTORY
   launch
-  worlds
+  model
   rviz
   urdf
   meshes

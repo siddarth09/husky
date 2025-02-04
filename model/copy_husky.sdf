@@ -1731,6 +1731,8 @@
         </material>
       </visual>
     </link>
+
+    
     <joint name='front_left_blade_joint' type='revolute'>
       <pose relative_to='root'>0.14099999999999999 0.189 0.10000000000000001 0 0 0</pose>
       <parent>root</parent>
@@ -1751,6 +1753,7 @@
         </dynamics>
       </axis>
     </joint>
+
     <link name='front_left_blade'>
       <pose relative_to='front_left_blade_joint'>0 0 0 0 0 0</pose>
       <inertial>
@@ -1766,6 +1769,7 @@
         </inertia>
       </inertial>
     </link>
+
     <joint name='front_right_blade_joint' type='revolute'>
       <pose relative_to='root'>0.14099999999999999 -0.189 0.10000000000000001 0 0 0</pose>
       <parent>root</parent>
@@ -1786,6 +1790,8 @@
         </dynamics>
       </axis>
     </joint>
+
+
     <link name='front_right_blade'>
       <pose relative_to='front_right_blade_joint'>0 0 0 0 0 0</pose>
       <inertial>
@@ -1993,252 +1999,7 @@
         </material>
       </visual>
     </link>
-    <plugin name='gazebo_ros_control' filename='liblegged_hw_sim.so'>
-      <robotNamespace>/</robotNamespace>
-      <robotParam>legged_robot_description</robotParam>
-      <robotSimType>legged_gazebo/LeggedHWSim</robotSimType>
-    </plugin>
-    <plugin name='p3d_base_controller' filename='libgazebo_ros_p3d.so'>
-      <alwaysOn>true</alwaysOn>
-      <updateRate>250.0</updateRate>
-      <topicName>ground_truth/state</topicName>
-      <gaussianNoise>0</gaussianNoise>
-      <frameName>world</frameName>
-      <xyzOffsets>0 0 0</xyzOffsets>
-      <rpyOffsets>0 0 0</rpyOffsets>
-      <bodyName>root</bodyName>
-      <xyzOffset>0 0 0</xyzOffset>
-      <rpyOffset>0 -0 0</rpyOffset>
-      <gz::corrected_offsets>1</gz::corrected_offsets>
-    </plugin>
-    <plugin name='gazebo_ros_control_0' filename='libgazebo_ros_control.so'>
-      <robotNamespace>/husky</robotNamespace>
-      <robotParam>robot_description</robotParam>
-    </plugin>
-    <plugin name='RF_ankle_mimic' filename='libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so'>
-      <joint>RF_KFE</joint>
-      <mimicJoint>RF_ankle</mimicJoint>
-      <has_pid>"false"</has_pid>
-      <multiplier>-1</multiplier>
-      <offset>0</offset>
-      <sensitiveness>0.02</sensitiveness>
-      <maxEffort>15</maxEffort>
-      <robotNamespace>/</robotNamespace>
-    </plugin>
-    <plugin name='LF_ankle_mimic' filename='libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so'>
-      <joint>LF_KFE</joint>
-      <mimicJoint>LF_ankle</mimicJoint>
-      <has_pid>"false"</has_pid>
-      <multiplier>-1</multiplier>
-      <offset>0</offset>
-      <sensitiveness>0.02</sensitiveness>
-      <maxEffort>15</maxEffort>
-      <robotNamespace>/</robotNamespace>
-    </plugin>
-    <plugin name='RH_ankle_mimic' filename='libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so'>
-      <joint>RH_KFE</joint>
-      <mimicJoint>RH_ankle</mimicJoint>
-      <has_pid>"false"</has_pid>
-      <multiplier>-1</multiplier>
-      <offset>0</offset>
-      <sensitiveness>0.02</sensitiveness>
-      <maxEffort>15</maxEffort>
-      <robotNamespace>/</robotNamespace>
-    </plugin>
-    <plugin name='LH_ankle_mimic' filename='libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so'>
-      <joint>LH_KFE</joint>
-      <mimicJoint>LH_ankle</mimicJoint>
-      <has_pid>"false"</has_pid>
-      <multiplier>-1</multiplier>
-      <offset>0</offset>
-      <sensitiveness>0.02</sensitiveness>
-      <maxEffort>15</maxEffort>
-      <robotNamespace>/</robotNamespace>
-    </plugin>
-    <plugin name='fr_control_rod_mimic' filename='libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so'>
-      <joint>RF_KFE</joint>
-      <mimicJoint>fr_control_rod</mimicJoint>
-      <has_pid>"false"</has_pid>
-      <multiplier>1</multiplier>
-      <offset>0</offset>
-      <sensitiveness>0</sensitiveness>
-      <maxEffort>15</maxEffort>
-      <robotNamespace>/</robotNamespace>
-    </plugin>
-    <plugin name='fl_control_rod_mimic' filename='libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so'>
-      <joint>LF_KFE</joint>
-      <mimicJoint>fl_control_rod</mimicJoint>
-      <has_pid>"false"</has_pid>
-      <multiplier>1</multiplier>
-      <offset>0</offset>
-      <sensitiveness>0</sensitiveness>
-      <maxEffort>15</maxEffort>
-      <robotNamespace>/</robotNamespace>
-    </plugin>
-    <plugin name='br_control_rod_mimic' filename='libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so'>
-      <joint>RH_KFE</joint>
-      <mimicJoint>br_control_rod</mimicJoint>
-      <has_pid>"false"</has_pid>
-      <multiplier>1</multiplier>
-      <offset>0</offset>
-      <sensitiveness>0</sensitiveness>
-      <maxEffort>15</maxEffort>
-      <robotNamespace>/</robotNamespace>
-    </plugin>
-    <plugin name='bl_control_rod_mimic' filename='libroboticsgroup_upatras_gazebo_mimic_joint_plugin.so'>
-      <joint>LH_KFE</joint>
-      <mimicJoint>bl_control_rod</mimicJoint>
-      <has_pid>"false"</has_pid>
-      <multiplier>1</multiplier>
-      <offset>0</offset>
-      <sensitiveness>0</sensitiveness>
-      <maxEffort>15</maxEffort>
-      <robotNamespace>/</robotNamespace>
-    </plugin>
-
-    <plugin filename="gz-sim-lift-drag-system"
-        name="gz::sim::systems::LiftDrag">
-      <a0>0.3</a0>
-      <alpha_stall>1.4</alpha_stall>
-      <cla>4.2500</cla>
-      <cda>1.2041</cda>
-      <cma>0.0</cma>
-      <cla_stall>-0.025</cla_stall>
-      <cda_stall>0.0</cda_stall>
-      <cma_stall>0.0</cma_stall>
-      <area>0.002</area>
-      <air_density>1.2041</air_density>
-      <cp>0.084 0 0</cp>
-      <forward>0 1 0</forward>
-      <upward>0 0 1</upward>
-      <link_name>front_right_blade</link_name>
-    </plugin>
-
-    <plugin filename="gz-sim-lift-drag-system"
-        name="gz::sim::systems::LiftDrag">
-      <a0>0.3</a0>
-      <alpha_stall>1.4</alpha_stall>
-      <cla>4.2500</cla>
-      <cda>1.2041</cda>
-      <cma>0.0</cma>
-      <cla_stall>-0.025</cla_stall>
-      <cda_stall>0.0</cda_stall>
-      <cma_stall>0.0</cma_stall>
-      <area>0.002</area>
-      <air_density>1.2041</air_density>
-      <cp>0.084 0 0</cp>
-      <forward>0 1 0</forward>
-      <upward>0 0 1</upward>
-      <link_name>front_right_blade</link_name>
-    </plugin>
     
-   <plugin filename="gz-sim-lift-drag-system"
-        name="gz::sim::systems::LiftDrag">
-      <a0>0.3</a0>
-      <alpha_stall>1.4</alpha_stall>
-      <cla>4.2500</cla>
-      <cda>1.2041</cda>
-      <cma>0.0</cma>
-      <cla_stall>-0.025</cla_stall>
-      <cda_stall>0.0</cda_stall>
-      <cma_stall>0.0</cma_stall>
-      <area>0.002</area>
-      <air_density>1.2041</air_density>
-      <cp>0.084 0 0</cp>
-      <forward>0 1 0</forward>
-      <upward>0 0 1</upward>
-      <link_name>rear_left_blade</link_name>
-    </plugin>
-    
-    <plugin filename="gz-sim-lift-drag-system"
-        name="gz::sim::systems::LiftDrag">
-      <a0>0.3</a0>
-      <alpha_stall>1.4</alpha_stall>
-      <cla>4.2500</cla>
-      <cda>1.2041</cda>
-      <cma>0.0</cma>
-      <cla_stall>-0.025</cla_stall>
-      <cda_stall>0.0</cda_stall>
-      <cma_stall>0.0</cma_stall>
-      <area>0.002</area>
-      <air_density>1.2041</air_density>
-      <cp>0.084 0 0</cp>
-      <forward>0 1 0</forward>
-      <upward>0 0 1</upward>
-      <link_name>rear_left_blade</link_name>
-    </plugin>
-
-    <plugin filename="gz-sim-lift-drag-system"
-        name="gz::sim::systems::LiftDrag">
-      <a0>0.3</a0>
-      <alpha_stall>1.4</alpha_stall>
-      <cla>4.2500</cla>
-      <cda>1.2041</cda>
-      <cma>0.0</cma>
-      <cla_stall>-0.025</cla_stall>
-      <cda_stall>0.0</cda_stall>
-      <cma_stall>0.0</cma_stall>
-      <area>0.002</area>
-      <air_density>1.2041</air_density>
-      <cp>0.084 0 0</cp>
-      <forward>0 1 0</forward>
-      <upward>0 0 1</upward>
-      <link_name>front_left_blade</link_name>
-    </plugin>
-
-    <plugin filename="gz-sim-lift-drag-system"
-        name="gz::sim::systems::LiftDrag">
-      <a0>0.3</a0>
-      <alpha_stall>1.4</alpha_stall>
-      <cla>4.2500</cla>
-      <cda>1.2041</cda>
-      <cma>0.0</cma>
-      <cla_stall>-0.025</cla_stall>
-      <cda_stall>0.0</cda_stall>
-      <cma_stall>0.0</cma_stall>
-      <area>0.002</area>
-      <air_density>1.2041</air_density>
-      <cp>0.084 0 0</cp>
-      <forward>0 1 0</forward>
-      <upward>0 0 1</upward>
-      <link_name>front_left_blade</link_name>
-    </plugin>
-    
-    <plugin filename="gz-sim-lift-drag-system"
-        name="gz::sim::systems::LiftDrag">
-      <a0>0.3</a0>
-      <alpha_stall>1.4</alpha_stall>
-      <cla>4.2500</cla>
-      <cda>1.2041</cda>
-      <cma>0.0</cma>
-      <cla_stall>-0.025</cla_stall>
-      <cda_stall>0.0</cda_stall>
-      <cma_stall>0.0</cma_stall>
-      <area>0.002</area>
-      <air_density>1.2041</air_density>
-      <cp>0.084 0 0</cp>
-      <forward>0 1 0</forward>
-      <upward>0 0 1</upward>
-      <link_name>rear_right_blade</link_name>
-    </plugin>
-    
-    <plugin filename="gz-sim-lift-drag-system"
-        name="gz::sim::systems::LiftDrag">
-      <a0>0.3</a0>
-      <alpha_stall>1.4</alpha_stall>
-      <cla>4.2500</cla>
-      <cda>1.2041</cda>
-      <cma>0.0</cma>
-      <cla_stall>-0.025</cla_stall>
-      <cda_stall>0.0</cda_stall>
-      <cma_stall>0.0</cma_stall>
-      <area>0.002</area>
-      <air_density>1.2041</air_density>
-      <cp>0.084 0 0</cp>
-      <forward>0 1 0</forward>
-      <upward>0 0 1</upward>
-      <link_name>rear_right_blade</link_name>
-    </plugin>
     
     <plugin name='ArduPilotPlugin' filename='/home/ruben/ardupilot_gazebo/build/libArduPilotPlugin.so'>
       <fdm_addr>127.0.0.1</fdm_addr>
