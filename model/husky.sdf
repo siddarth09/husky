@@ -62,7 +62,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://husky_description/meshes/body_link_prop_part_bin.STL</uri>
+            <uri>model://husky/meshes/body_link_prop_part_bin.STL</uri>
           </mesh>
         </geometry>
         <material>
@@ -131,7 +131,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://husky_description/meshes/bl_hip.STL</uri>
+            <uri>model://husky/meshes/bl_hip.STL</uri>
           </mesh>
         </geometry>
         <material>
@@ -252,7 +252,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://husky_description/meshes/bl_femur.STL</uri>
+            <uri>model://husky/meshes/bl_femur.STL</uri>
           </mesh>
         </geometry>
         <material>
@@ -325,7 +325,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://husky_description/meshes/fr_tibia.STL</uri>
+            <uri>model://husky/meshes/fr_tibia.STL</uri>
           </mesh>
         </geometry>
         <material>
@@ -416,7 +416,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://husky_description/meshes/fr_foot.STL</uri>
+            <uri>model://husky/meshes/fr_foot.STL</uri>
           </mesh>
         </geometry>
         <material>
@@ -478,7 +478,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://husky_description/meshes/fr_fibula.STL</uri>
+            <uri>model://husky/meshes/fr_fibula.STL</uri>
           </mesh>
         </geometry>
         <material>
@@ -546,7 +546,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://husky_description/meshes/bl_hip.STL</uri>
+            <uri>model://husky/meshes/bl_hip.STL</uri>
           </mesh>
         </geometry>
         <material>
@@ -667,7 +667,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://husky_description/meshes/bl_femur.STL</uri>
+            <uri>model://husky/meshes/bl_femur.STL</uri>
           </mesh>
         </geometry>
         <material>
@@ -740,7 +740,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://husky_description/meshes/fr_tibia.STL</uri>
+            <uri>model://husky/meshes/fr_tibia.STL</uri>
           </mesh>
         </geometry>
         <material>
@@ -831,7 +831,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://husky_description/meshes/fr_foot.STL</uri>
+            <uri>model://husky/meshes/fr_foot.STL</uri>
           </mesh>
         </geometry>
         <material>
@@ -893,7 +893,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://husky_description/meshes/fr_fibula.STL</uri>
+            <uri>model://husky/meshes/fr_fibula.STL</uri>
           </mesh>
         </geometry>
         <material>
@@ -961,7 +961,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://husky_description/meshes/fr_hip.STL</uri>
+            <uri>model://husky/meshes/fr_hip.STL</uri>
           </mesh>
         </geometry>
         <material>
@@ -1082,7 +1082,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://husky_description/meshes/fr_femur.STL</uri>
+            <uri>model://husky/meshes/fr_femur.STL</uri>
           </mesh>
         </geometry>
         <material>
@@ -1155,7 +1155,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://husky_description/meshes/fr_tibia.STL</uri>
+            <uri>model://husky/meshes/fr_tibia.STL</uri>
           </mesh>
         </geometry>
         <material>
@@ -1246,7 +1246,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://husky_description/meshes/fr_foot.STL</uri>
+            <uri>model://husky/meshes/fr_foot.STL</uri>
           </mesh>
         </geometry>
         <material>
@@ -1308,7 +1308,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://husky_description/meshes/fr_fibula.STL</uri>
+            <uri>model://husky/meshes/fr_fibula.STL</uri>
           </mesh>
         </geometry>
         <material>
@@ -1376,7 +1376,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://husky_description/meshes/fr_hip.STL</uri>
+            <uri>model://husky/meshes/fr_hip.STL</uri>
           </mesh>
         </geometry>
         <material>
@@ -1497,7 +1497,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://husky_description/meshes/fr_femur.STL</uri>
+            <uri>model://husky/meshes/fr_femur.STL</uri>
           </mesh>
         </geometry>
         <material>
@@ -1570,7 +1570,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://husky_description/meshes/fr_tibia.STL</uri>
+            <uri>model://husky/meshes/fr_tibia.STL</uri>
           </mesh>
         </geometry>
         <material>
@@ -1661,7 +1661,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://husky_description/meshes/fr_foot.STL</uri>
+            <uri>model://husky/meshes/fr_foot.STL</uri>
           </mesh>
         </geometry>
         <material>
@@ -1723,7 +1723,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>model://husky_description/meshes/fr_fibula.STL</uri>
+            <uri>model://husky/meshes/fr_fibula.STL</uri>
           </mesh>
         </geometry>
         <material>
