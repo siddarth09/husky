@@ -22,33 +22,13 @@
   <xacro:property name="l_hip_frontal_lowlim" value="${5*pi/180}" />
   <xacro:property name="l_hip_frontal_uplim" value="${25*pi/180}" />
 
-  <xacro:property name="r_axis" value="1" />
-  <xacro:property name="l_axis" value="1" />
+  <xacro:property name="r_axis" value="1.0" />
+  <xacro:property name="l_axis" value="1.0" />
 
  
-  <!-- <plugin filename="liblegged_hw_sim.so" name="gazebo_ros_control">
-    <robotNamespace>/</robotNamespace>
-    <robotParam>legged_robot_description</robotParam>
-    <robotSimType>legged_gazebo/LeggedHWSim</robotSimType>
-  </plugin>  -->
   
-  
-  <!-- <plugin filename="libgazebo_ros_p3d.so" name="p3d_base_controller">
-    <alwaysOn>true</alwaysOn>
-    <updateRate>250.0</updateRate>    
-    <bodyName>base</bodyName>
-    <topicName>ground_truth/state</topicName>
-    <gaussianNoise>0</gaussianNoise>
-    <frameName>world</frameName>  
-    <xyzOffsets>0 0 0</xyzOffsets>
-    <rpyOffsets>0 0 0</rpyOffsets>
-  </plugin>   -->
-
-
-
-  <!-- Imu is fixed to the base link -->
   <joint name="unitree_imu_joint" type="fixed">
-    <origin rpy="0. 0. 0." xyz="0. 0. 0."/>
+    <origin rpy="0. 0. 0." xyz="0.01 0. 0."/>
     <parent link="base"/>
     <child link="unitree_imu"/>
   </joint>
@@ -76,7 +56,7 @@
 <!--HUSSAIN SENSORS BEGIN-->
   <!-- Imu is fixed to the base link -->
   <joint name="hussain_imu_joint" type="fixed">
-    <origin rpy="0. 0. 0." xyz="0. 0. 0."/>
+    <origin rpy="0. 0. 0." xyz="0.01 0. 0."/>
     <parent link="base"/>
     <child link="hussain_imu"/>
   </joint>
@@ -249,7 +229,13 @@
     <parent link="LF_calf"/>
     <child link="LF_fut"/>
     <origin rpy="0 0 ${r_knee_ipos}"   xyz="0.333 0.0 0.0"/>
-    <axis xyz="0.0 0.0 1.0" />
+    <axis>
+      <xyz>0.0 0.0 1.0</xyz>
+      <mimic joint="LF_KFE" axis="axis">
+        <multiplier>-1</multiplier>
+        <offset>0</offset>
+      </mimic>
+    </axis>
     <dynamics damping="${free_joint_damping}" friction="${motor_sfriction}"/>
     <limit effort="${efflim}" lower="${l_ankle_lowlim}" upper="${l_ankle_uplim}" velocity="8.7267"/>
   </joint>
@@ -267,7 +253,13 @@
     <parent link="RH_calf"/>
     <child link="RH_fut"/>
     <origin rpy="0 0 ${l_knee_ipos}"   xyz="0.333 0.0 0.0"/>
-    <axis xyz="0.0 0.0 1.0" />
+    <axis>
+      <xyz>0.0 0.0 1.0</xyz>
+      <mimic joint="RF_KFE" axis="axis">
+        <multiplier>-1</multiplier>
+        <offset>0</offset>
+      </mimic>
+    </axis>
     <dynamics damping="${free_joint_damping}" friction="${motor_sfriction}"/>
     <limit effort="${efflim}" lower="${r_ankle_lowlim}" upper="${r_ankle_uplim}" velocity="8.7267"/>
   </joint>
@@ -275,25 +267,25 @@
   <joint name="RF_foot_fixed" type="fixed">
     <parent link="RF_fut"/>
     <child link="RF_FOOT"/>
-    <origin rpy="0 0 0"   xyz="0.0 0.0 0.0"/>
+    <origin rpy="0 0 0"   xyz="0.01 0.0 0.0"/>
   </joint>
   
   <joint name="LF_foot_fixed" type="fixed">
     <parent link="LF_fut"/>
     <child link="LF_FOOT"/>
-    <origin rpy="0 0 0"   xyz="0.0 0.0 0.0"/>
+    <origin rpy="0 0 0"   xyz="0.01 0.0 0.0"/>
   </joint>
   
   <joint name="LH_foot_fixed" type="fixed">
     <parent link="LH_fut"/>
     <child link="LH_FOOT"/>
-    <origin rpy="0 0 0"   xyz="0.0 0.0 0.0"/>
+    <origin rpy="0 0 0"   xyz="0.01 0.0 0.0"/>
   </joint>
   
   <joint name="RH_foot_fixed" type="fixed">
     <parent link="RH_fut"/>
     <child link="RH_FOOT"/>
-    <origin rpy="0 0 0"   xyz="0.0 0.0 0.0"/>
+    <origin rpy="0 0 0"   xyz="0.01 0.0 0.0"/>
   </joint>
 
   <gazebo reference="RF_foot_fixed">
@@ -322,7 +314,7 @@
   <joint name="root_to_base_joint" type="fixed">
     <parent link="root"/>
     <child link="base"/>
-    <origin rpy="0 0 0"   xyz="0 0.0 0.0"/>
+    <origin rpy="0 0 0"   xyz="0.01 0.0 0.0"/>
   </joint>
   
   
@@ -993,7 +985,13 @@
     <parent link="RF_thigh"/>
     <child link="fr_fibula"/>
     <origin rpy="0 0.0 ${r_knee_ipos}"   xyz="0.12 0.0 -0.0431"/>
-    <axis xyz="0.0 0.0 1.0" />
+    <axis>
+      <xyz>0.0 0.0 1.0</xyz>
+      <mimic joint="RF_KFE" axis="axis">
+        <multiplier>-1</multiplier>
+        <offset>0</offset>
+      </mimic>
+    </axis>
     <dynamics damping="${free_joint_damping}" friction="${free_joint_sfriction}"/>
     <limit effort="${efflim}" lower="${r_knee_lowlim}" upper="${r_knee_uplim}" velocity="8.7267"/>
   </joint>
@@ -1002,7 +1000,13 @@
     <parent link="LF_thigh"/>
     <child link="fl_fibula"/>
     <origin rpy="0 0.0 ${l_knee_ipos}"   xyz="0.12 0.0 -0.0431"/>
-    <axis xyz="0.0 0.0 1.0" />
+    <axis>
+      <xyz>0.0 0.0 1.0</xyz>
+      <mimic joint="LF_KFE" axis="axis">
+        <multiplier>-1</multiplier>
+        <offset>0</offset>
+      </mimic>
+    </axis>
     <dynamics damping="${free_joint_damping}" friction="${free_joint_sfriction}"/>
     <limit effort="${efflim}" lower="${l_knee_lowlim}" upper="${l_knee_uplim}" velocity="8.7267"/>
   </joint>
@@ -1011,7 +1015,13 @@
     <parent link="LH_thigh"/>
     <child link="bl_fibula"/>
     <origin rpy="0 0.0 ${l_knee_ipos}"   xyz="0.12 0.0 -0.0431"/>
-    <axis xyz="0.0 0.0 1.0" />
+    <axis>
+      <xyz>0.0 0.0 1.0</xyz>
+      <mimic joint="LF_KFE" axis="axis">
+        <multiplier>-1</multiplier>
+        <offset>0</offset>
+      </mimic>
+    </axis>
     <dynamics damping="${free_joint_damping}" friction="${free_joint_sfriction}"/>
     <limit effort="${efflim}" lower="${l_knee_lowlim}" upper="${l_knee_uplim}" velocity="8.7267"/>
   </joint>
@@ -1020,7 +1030,13 @@
     <parent link="RH_thigh"/>
     <child link="br_fibula"/>
     <origin rpy="0 0.0 ${r_knee_ipos}"   xyz="0.12 0.0 -0.0431"/>
-    <axis xyz="0.0 0.0 1.0" />
+    <axis>
+      <xyz>0.0 0.0 1.0</xyz>
+      <mimic joint="RF_KFE" axis="axis">
+        <multiplier>-1</multiplier>
+        <offset>0</offset>
+      </mimic>
+    </axis>
     <dynamics damping="${free_joint_damping}" friction="${free_joint_sfriction}"/>
     <limit effort="${efflim}" lower="${r_knee_lowlim}" upper="${r_knee_uplim}" velocity="8.7267"/>
   </joint>
@@ -1240,5 +1256,58 @@
     <dynamics damping="${blade_damping}" friction="${blade_sfriction}"/>
     <limit lower="-1e+16" upper="1e+16" effort="10000" velocity="10000"/>  
   </joint>
+
+
+  <!--Camera-->
+
+  <joint type="fixed" name="camera_joint">
+    <origin xyz="0.225 0 0.075" rpy="0 0 0"/>
+    <child link="camera_link"/>
+    <parent link="base"/>
+    
+  </joint>
+
+  <link name='camera_link'>
+    <pose>0 0 0 0 0 0</pose>
+    <inertial>
+      <mass value="0.1"/>
+      <origin xyz="0.001 0 0" rpy="0 0 0"/>
+      <inertia
+          ixx="1e-6" ixy="0" ixz="0"
+          iyy="1e-6" iyz="0"
+          izz="1e-6"
+      />
+    </inertial>
+
+    <collision name='collision'>
+      <origin xyz="0.001 0 0" rpy="0 0 0"/> 
+      <geometry>
+        <box size=".03 .03 .03"/>
+      </geometry>
+    </collision>
+
+    <visual name='camera_link_visual'>
+      <origin xyz="0.001 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size=".03 .03 .03"/>
+      </geometry>
+    </visual>
+
+  </link>
+
+  <gazebo reference="camera_link">
+    <material>Gazebo/Red</material>
+  </gazebo>
+
+  <joint type="fixed" name="camera_optical_joint">
+    <origin xyz="0 0 0" rpy="-1.5707 0 -1.5707"/>
+    <child link="camera_link_optical"/>
+    <parent link="camera_link"/>
+  </joint>
+
+  <link name="camera_link_optical">
+  </link>
+
+  
 
 </robot>

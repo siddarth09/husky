@@ -1,9 +1,12 @@
 <?xml version="1.0"?>
 <robot>
     <gazebo>
-        <plugin name="gazebo_ros_control_0" filename="libgazebo_ros_control.so">
-            <robotNamespace>/husky</robotNamespace>
-            <robotParam>robot_description</robotParam>
+        <plugin name="gz_harmonic_control" filename="libgz_hardware.so">
+            <param name="model_name">husky</param>
+            <param name="joint_state_topic">/husky/joint_states</param>
+            <param name="command_topic">/husky/joint_commands</param>
+            <param name="use_pid" value="false"/>
+
         </plugin>
     </gazebo>
     <!-- <gazebo>
@@ -103,6 +106,44 @@
         </plugin>
     </gazebo> -->
 
+    <gazebo>
+        <plugin
+            filename="gz-sim-joint-state-publisher-system"
+            name="gz::sim::systems::JointStatePublisher">
+            <topic>joint_states</topic> <!--from <ros><remapping> -->
+            <joint_name>hussain_imu_joint</joint_name>
+            <joint_name>RF_HAA</joint_name>
+            <joint_name>LF_HAA</joint_name>
+            <joint_name>LH_HAA</joint_name>
+            <joint_name>RH_HAA</joint_name>
+            <joint_name>RF_HFE</joint_name>
+            <joint_name>LF_HFE</joint_name>
+            <joint_name>LH_HFE</joint_name>
+            <joint_name>RH_HFE</joint_name>
+            <joint_name>RF_KFE</joint_name>
+            <joint_name>LF_KFE</joint_name>
+            <joint_name>LH_KFE</joint_name>
+            <joint_name>RH_KFE</joint_name>
+            <joint_name>RF_ankle</joint_name>
+            <joint_name>LF_ankle</joint_name>
+            <joint_name>RH_ankle</joint_name>
+            <joint_name>RF_foot_fixed</joint_name>
+            <joint_name>LF_foot_fixed</joint_name>
+            <joint_name>LH_foot_fixed</joint_name>
+            <joint_name>RH_foot_fixed</joint_name>
+            <joint_name>root_to_base_joint</joint_name>
+            <joint_name>fr_control_rod</joint_name>
+            <joint_name>fl_control_rod</joint_name>
+            <joint_name>bl_control_rod</joint_name>
+            <joint_name>br_control_rod</joint_name>
+            <joint_name>front_right_blade_joint</joint_name>
+            <joint_name>front_left_blade_joint</joint_name>
+            <joint_name>rear_left_blade_joint</joint_name>
+            <joint_name>rear_right_blade_joint</joint_name>
+            <joint_name>camera_joint</joint_name>
+            <joint_name>camera_optical_joint</joint_name>
+        </plugin>
+    </gazebo>
     <gazebo>
         <plugin filename="gz-sim-lift-drag-system"
             name="gz::sim::systems::LiftDrag">
@@ -264,55 +305,12 @@
         <visualize>true</visualize>
         <topic>imu</topic>
         <enable_metrics>true</enable_metrics>
-        <gz_frame_id>imu_link</gz_frame_id>
+        <gz_frame_id>hussain_imu</gz_frame_id>
         </sensor>
     </gazebo>
 
-
-    <gazebo reference="camera_link">
-    <sensor name="depth_camera" type="depth_camera">
-      <camera>
-        <horizontal_fov>1.25</horizontal_fov>
-        <image>
-          <width>320</width>
-          <height>240</height>
-          <!-- <format>L16</format> -->
-        </image>
-        <clip>
-          <near>0.1</near>
-          <far>20</far>
-        </clip>
-        <!-- <optical_frame_id>camera_link</optical_frame_id> -->
-        <optical_frame_id>camera_link_optical</optical_frame_id>
-        <!-- <camera_info_topic>camera_info</camera_info_topic> -->
-      </camera>
-      <always_on>1</always_on>
-      <update_rate>20</update_rate>
-      <visualize>true</visualize>
-      <topic>camera_depth</topic>
-      <gz_frame_id>camera_link</gz_frame_id>
-    </sensor>
-    <sensor name="camera" type="camera">
-      <camera>
-        <horizontal_fov>1.25</horizontal_fov>
-        <image>
-          <width>320</width>
-          <height>240</height>
-          <format>R8G8B8</format>
-        </image>
-        <clip>
-          <near>0.1</near>
-          <far>20</far>
-        </clip>
-        <optical_frame_id>camera_link_optical</optical_frame_id>
-        <camera_info_topic>camera_info</camera_info_topic>
-      </camera>
-      <always_on>1</always_on>
-      <update_rate>20</update_rate>
-      <visualize>true</visualize>
-      <topic>camera</topic>
-    </sensor>
-  </gazebo>
+    
+    
 
 
 </robot>

@@ -1,13 +1,18 @@
 <?xml version="1.0" ?>
 <sdf version="1.8">
+
+
+  <![CDATA[
+    gz sim -v 4 husky1.sdf \
+           --physics-engine gz-physics-bullet-featherstone-plugin
+  ]]>
   <world name="world_demo">
     <physics name="1ms" type="ignored">
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1.0</real_time_factor>
     </physics>
-    <plugin
-      filename="gz-sim-physics-system"
-      name="gz::sim::systems::Physics">
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics">
+      <engine><filename>gz-physics-bullet-featherstone-plugin</filename></engine>
     </plugin>
     <plugin
       filename="gz-sim-user-commands-system"
@@ -17,8 +22,34 @@
       filename="gz-sim-scene-broadcaster-system"
       name="gz::sim::systems::SceneBroadcaster">
     </plugin>
+    <plugin
+      filename="gz-sim-contact-system"
+      name="gz::sim::systems::Contact">
+    </plugin>
 
-    <!--light-->
+    <plugin
+      filename="gz-sim-sensors-system"
+      name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin
+      filename="gz-sim-imu-system"
+      name="gz::sim::systems::Imu">
+    </plugin>
+    <plugin
+      filename="gz-sim-navsat-system"
+      name="gz::sim::systems::NavSat">
+    </plugin>
+    <!-- Set the coordinates for the world origin -->
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <world_frame_orientation>ENU</world_frame_orientation>
+      <latitude_deg>47.478950</latitude_deg>
+      <longitude_deg>19.057785</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+
     <light type="directional" name="sun">
       <cast_shadows>true</cast_shadows>
       <pose>0 0 10 0 0 0</pose>
@@ -32,6 +63,52 @@
       </attenuation>
       <direction>-0.5 0.1 -0.9</direction>
     </light>
+
+    <gravity>0 0 -9.8000000000000007</gravity>
+    <magnetic_field>5.5644999999999998e-06 2.2875799999999999e-05 -4.2388400000000002e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <scene>
+      <ambient>0.400000006 0.400000006 0.400000006 1</ambient>
+      <background>0.699999988 0.699999988 0.699999988 1</background>
+      <shadows>true</shadows>
+    </scene>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>50</mu>
+              </ode>
+            </friction>
+            <bounce/>
+            <contact/>
+          </surface>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
      <model name='husky'>
         <link name='root'>
           <inertial>
@@ -162,16 +239,16 @@
       </link>
 
       <joint name='LF_HAA' type='revolute'>
-        <pose relative_to='root'>0.2087 0.044999999999999998 0.0001 1.5707926535897927 -1.1102230246251565e-16 1.5707926535897927</pose>
+        <pose relative_to='root'>0.2087 0.045 0.0001 -1.5708 -3.1416 -1.5708</pose>
         <parent>root</parent>
         <child>LF_hip</child>
         <axis>
           <xyz>0 0 1</xyz>
           <limit>
-            <lower>0.087266462599716474</lower>
-            <upper>0.43633231299858238</upper>
+            <lower>0.0873</lower>
+            <upper>0.4363</upper>
             <effort>33.5</effort>
-            <velocity>8.7266999999999992</velocity>
+            <velocity>8.7267</velocity>
           </limit>
           <dynamics>
             <damping>0</damping>
@@ -486,6 +563,7 @@
 
           <mimic joint="LF_KFE" axis="axis">
               <multiplier>-1</multiplier>
+              <offset>0</offset>
           </mimic>
         </axis>
       </joint>
@@ -565,6 +643,7 @@
 
           <mimic joint="LF_KFE" axis="axis">
               <multiplier>-1</multiplier>
+              <offset>0</offset>
           </mimic>
         </axis>
       </joint>
@@ -1027,7 +1106,8 @@
           </dynamics>
           <mimic joint="LF_KFE" axis="axis">
               <multiplier>-1</multiplier>
-            </mimic>
+              <offset>0</offset>
+           </mimic>
         </axis>
       </joint>
 
@@ -1043,6 +1123,1210 @@
           </axis>
       </joint>
       -->
+
+      <!-- Right -->
+    <link name='RF_hip'>
+      <pose relative_to='RF_HAA'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.025999999999999999 0 0 0 0 0</pose>
+        <mass>0.02</mass>
+        <inertia>
+          <ixx>4.9519599999999999e-06</ixx>
+          <ixy>2.8633800000000001e-09</ixy>
+          <ixz>-1.34345e-06</ixz>
+          <iyy>1.3790399999999999e-05</iyy>
+          <iyz>3.9977500000000002e-08</iyz>
+          <izz>1.52492e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='RF_hip_collision'>
+        <pose>0.02 0 0 0 1.5707963267948966 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.080000000000000002</length>
+            <radius>0.029999999999999999</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.20000000000000001</mu>
+              <mu2>0.20000000000000001</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='RF_hip_visual_visual'>
+        <pose>0 0 0 -3.1415853071795872 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://home/siddarth/husky_ws/src/husky_model_description/meshes/fr_hip.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/DarkGrey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0.372500002 0.372500002 0.372500002 1</diffuse>
+          <ambient>0.372500002 0.372500002 0.372500002 1</ambient>
+        </material>
+      </visual>
+    </link>
+
+
+    <joint name='RF_HAA' type='revolute'>
+      <pose relative_to='root'>0.2087 -0.044999999999999998 0.0001 -1.5708 -5.5511151231257827e-17 -1.5708</pose>
+      <parent>root</parent>
+      <child>RF_hip</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-0.43633231299858238</lower>
+          <upper>-0.087266462599716474</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+
+
+
+    <link name='RF_thigh'>
+      <pose relative_to='RF_HFE'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.098000000000000004 0 -0.014999999999999999 0 0 0</pose>
+        <mass>0.20000000000000001</mass>
+        <inertia>
+          <ixx>9.0418299999999995e-05</ixx>
+          <ixy>-1.2040099999999999e-08</ixy>
+          <ixz>2.6448699999999998e-07</ixz>
+          <iyy>0.0015249</iyy>
+          <iyz>-1.9821299999999999e-05</iyz>
+          <izz>0.0015564400000000001</izz>
+        </inertia>
+      </inertial>
+      <collision name='RF_thigh_collision'>
+        <pose>0 0 -0.01 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.059999999999999998</length>
+            <radius>0.029999999999999999</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1000000</kp>
+              <kd>100</kd>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.20000000000000001</mu>
+              <mu2>0.20000000000000001</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='RF_thigh_collision_1'>
+        <pose>0.089999999999999997 0 0 0 1.5707963267948966 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.20000000000000001</length>
+            <radius>0.01</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1000000</kp>
+              <kd>100</kd>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.20000000000000001</mu>
+              <mu2>0.20000000000000001</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='RF_thigh_collision_2'>
+        <pose>0.17999999999999999 0 -0.0050000000000000001 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.050000000000000003</length>
+            <radius>0.029999999999999999</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1000000</kp>
+              <kd>100</kd>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.20000000000000001</mu>
+              <mu2>0.20000000000000001</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='RF_thigh_visual_visual'>
+        <pose>0 0 0 -1.5708 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://home/siddarth/husky_ws/src/husky_model_description/meshes/fr_femur.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/DarkGrey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+      <self_collide>false</self_collide>
+    </link>
+
+
+
+    <joint name='RF_HFE' type='revolute'>
+      <pose relative_to='RF_hip'>0.1031 0 0 3.1415853071795858 -1.5707963267948966 0</pose>
+      <parent>RF_hip</parent>
+      <child>RF_thigh</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.134464013796314</lower>
+          <upper>-0.43633231299858238</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+
+
+    <link name='RF_calf'>
+      <pose relative_to='RF_KFE'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.105 0 0 0 0 0</pose>
+        <mass>0.050000000000000003</mass>
+        <inertia>
+          <ixx>9.4886099999999999e-06</ixx>
+          <ixy>-1.6026099999999999e-09</ixy>
+          <ixz>-1.51986e-05</ixz>
+          <iyy>0.00091082299999999995</iyy>
+          <iyz>5.37151e-08</iyz>
+          <izz>0.00091704500000000001</izz>
+        </inertia>
+      </inertial>
+      <collision name='RF_calf_collision'>
+        <pose>0.16 0 0 0 1.5707963267948966 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.32000000000000001</length>
+            <radius>0.01</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.59999999999999998</mu>
+              <mu2>0.59999999999999998</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='RF_calf_visual_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://home/siddarth/husky_ws/src/husky_model_description/meshes/fr_tibia.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.372500002 0.372500002 0.372500002 1</diffuse>
+          <ambient>0.372500002 0.372500002 0.372500002 1</ambient>
+        </material>
+      </visual>
+      <self_collide>true</self_collide>
+    </link>
+
+    <joint name='RF_KFE' type='revolute'>
+      <pose relative_to='RF_thigh'>0.17999999999999999 0 -0.043099999999999999 0 0 -3.1415926535897931</pose>
+      <parent>RF_thigh</parent>
+      <child>RF_calf</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0.73303828583761843</lower>
+          <upper>1.867502299633933</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+
+
+    <link name='RF_fut'>
+      <pose relative_to='RF_ankle'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.024545454545454551 0 0 0 0 0</pose>
+        <mass>0.11</mass>
+        <inertia>
+          <ixx>1.64332e-05</ixx>
+          <ixy>-1.5091499999999999e-09</ixy>
+          <ixz>3.2228700000000001e-09</ixz>
+          <iyy>0.00034059927272727259</iyy>
+          <iyz>-3.2032699999999998e-09</iyz>
+          <izz>0.0003395562727272727</izz>
+        </inertia>
+      </inertial>
+      <collision name='RF_fut_collision'>
+        <pose>0.01 0 0 0 1.5707963267948966 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.16</length>
+            <radius>0.01</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.59999999999999998</mu>
+              <mu2>0.59999999999999998</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='RF_fut_fixed_joint_lump__RF_FOOT_collision_1'>
+        <pose>0.12 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.02</radius>
+          </sphere>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1000000</kp>
+              <kd>100</kd>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.90000000000000002</mu>
+              <mu2>0.90000000000000002</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='RF_fut_visual_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://home/siddarth/husky_ws/src/husky_model_description/meshes/fr_foot.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/DarkGrey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0.313749969 0.313749969 0.313749969 1</diffuse>
+          <ambient>0.313749969 0.313749969 0.313749969 1</ambient>
+        </material>
+      </visual>
+      <self_collide>true</self_collide>
+    </link>
+
+    <joint name='RF_ankle' type='revolute'>
+      <pose relative_to='RF_calf'>0.33300000000000002 0 0 0 0 3.1415926535897931</pose>
+      <parent>RF_calf</parent>
+      <child>RF_fut</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.570796326794897</lower>
+          <upper>1.570796326794897</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <mimic joint="RF_KFE" axis="axis">
+            <multiplier>-1</multiplier>
+            <offset>0</offset>
+        </mimic>
+      </axis>
+    </joint>
+    
+    <link name='fr_fibula'>
+      <pose relative_to='fr_control_rod'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.17299999999999999 0 0 0 0 0</pose>
+        <mass>0.02</mass>
+        <inertia>
+          <ixx>8.92564e-07</ixx>
+          <ixy>-6.0893099999999998e-13</ixy>
+          <ixz>-4.5247700000000001e-07</ixz>
+          <iyy>0.00040501600000000001</iyy>
+          <iyz>-1.2125999999999999e-09</iyz>
+          <izz>0.00040542799999999999</izz>
+        </inertia>
+      </inertial>
+      <collision name='fr_fibula_collision'>
+        <pose>0.14000000000000001 0 0 0 1.5707963267948966 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.23999999999999999</length>
+            <radius>0.01</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='fr_fibula_visual_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://home/siddarth/husky_ws/src/husky_model_description/meshes/fr_fibula.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.372500002 0.372500002 0.372500002 1</diffuse>
+          <ambient>0.372500002 0.372500002 0.372500002 1</ambient>
+        </material>
+      </visual>
+    </link>
+
+
+    <joint name='fr_control_rod' type='revolute'>
+      <pose relative_to='RF_thigh'>0.12 0 -0.043099999999999999 0 0 -3.1415926535897931</pose>
+      <parent>RF_thigh</parent>
+      <child>fr_fibula</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0.73303828583761843</lower>
+          <upper>1.867502299633933</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <mimic joint= "RF_KFE" axis="axis">
+            <multiplier>-1</multiplier>
+            <offset>0</offset>
+        </mimic>
+      </axis>
+    </joint>
+
+
+    <link name='RH_hip'>
+      <pose relative_to='RH_HAA'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.025999999999999999 0 0 0 0 0</pose>
+        <mass>0.02</mass>
+        <inertia>
+          <ixx>4.9519599999999999e-06</ixx>
+          <ixy>2.8633800000000001e-09</ixy>
+          <ixz>-1.34345e-06</ixz>
+          <iyy>1.3790399999999999e-05</iyy>
+          <iyz>3.9977500000000002e-08</iyz>
+          <izz>1.52492e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='RH_hip_collision'>
+        <pose>0.02 0 0 0 1.5707963267948966 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.080000000000000002</length>
+            <radius>0.029999999999999999</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.20000000000000001</mu>
+              <mu2>0.20000000000000001</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='RH_hip_visual_visual'>
+        <pose>0 0 0 -3.1415853071795872 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://home/siddarth/husky_ws/src/husky_model_description/meshes/fr_hip.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/DarkGrey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0.372500002 0.372500002 0.372500002 1</diffuse>
+          <ambient>0.372500002 0.372500002 0.372500002 1</ambient>
+        </material>
+      </visual>
+    </link>
+
+    <joint name='RH_HAA' type='revolute'>
+      <pose relative_to='root'>-0.1862 -0.044999999999999998 0.00020000000000000001 -1.5708 -5.5511151231257827e-17 -1.5708</pose>
+      <parent>root</parent>
+      <child>RH_hip</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-0.43633231299858238</lower>
+          <upper>-0.087266462599716474</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+
+
+    <joint name='RH_HFE' type='revolute'>
+      <pose relative_to='RH_hip'>0.1031 0 0 3.1415853071795858 -1.5707963267948966 0</pose>
+      <parent>RH_hip</parent>
+      <child>RH_thigh</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.134464013796314</lower>
+          <upper>-0.43633231299858238</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+
+
+
+    <link name='RH_thigh'>
+      <pose relative_to='RH_HFE'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.098000000000000004 0 -0.014999999999999999 0 0 0</pose>
+        <mass>0.20000000000000001</mass>
+        <inertia>
+          <ixx>9.0418299999999995e-05</ixx>
+          <ixy>-1.2040099999999999e-08</ixy>
+          <ixz>2.6448699999999998e-07</ixz>
+          <iyy>0.0015249</iyy>
+          <iyz>-1.9821299999999999e-05</iyz>
+          <izz>0.0015564400000000001</izz>
+        </inertia>
+      </inertial>
+      <collision name='RH_thigh_collision'>
+        <pose>0 0 -0.01 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.059999999999999998</length>
+            <radius>0.029999999999999999</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1000000</kp>
+              <kd>100</kd>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.20000000000000001</mu>
+              <mu2>0.20000000000000001</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='RH_thigh_collision_1'>
+        <pose>0.089999999999999997 0 0 0 1.5707963267948966 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.20000000000000001</length>
+            <radius>0.01</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1000000</kp>
+              <kd>100</kd>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.20000000000000001</mu>
+              <mu2>0.20000000000000001</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='RH_thigh_collision_2'>
+        <pose>0.17999999999999999 0 -0.0050000000000000001 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.050000000000000003</length>
+            <radius>0.029999999999999999</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1000000</kp>
+              <kd>100</kd>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.20000000000000001</mu>
+              <mu2>0.20000000000000001</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='RH_thigh_visual_visual'>
+        <pose>0 0 0 -1.5708 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://home/siddarth/husky_ws/src/husky_model_description/meshes/fr_femur.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/DarkGrey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>1 1 1 1</diffuse>
+          <ambient>1 1 1 1</ambient>
+        </material>
+      </visual>
+      <self_collide>false</self_collide>
+    </link>
+
+    
+
+    <link name='RH_calf'>
+      <pose relative_to='RH_KFE'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.105 0 0 0 0 0</pose>
+        <mass>0.050000000000000003</mass>
+        <inertia>
+          <ixx>9.4886099999999999e-06</ixx>
+          <ixy>-1.6026099999999999e-09</ixy>
+          <ixz>-1.51986e-05</ixz>
+          <iyy>0.00091082299999999995</iyy>
+          <iyz>5.37151e-08</iyz>
+          <izz>0.00091704500000000001</izz>
+        </inertia>
+      </inertial>
+      <collision name='RH_calf_collision'>
+        <pose>0.16 0 0 0 1.5707963267948966 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.32000000000000001</length>
+            <radius>0.01</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.59999999999999998</mu>
+              <mu2>0.59999999999999998</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='RH_calf_visual_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://home/siddarth/husky_ws/src/husky_model_description/meshes/fr_tibia.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.372500002 0.372500002 0.372500002 1</diffuse>
+          <ambient>0.372500002 0.372500002 0.372500002 1</ambient>
+        </material>
+      </visual>
+      <self_collide>true</self_collide>
+    </link>
+
+    <joint name='RH_KFE' type='revolute'>
+      <pose relative_to='RH_thigh'>0.17999999999999999 0 -0.043099999999999999 0 0 -3.1415926535897931</pose>
+      <parent>RH_thigh</parent>
+      <child>RH_calf</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0.73303828583761843</lower>
+          <upper>1.867502299633933</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+
+    
+
+
+    <link name='RH_fut'>
+      <pose relative_to='RH_ankle'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.024545454545454551 0 0 0 0 0</pose>
+        <mass>0.11</mass>
+        <inertia>
+          <ixx>1.64332e-05</ixx>
+          <ixy>-1.5091499999999999e-09</ixy>
+          <ixz>3.2228700000000001e-09</ixz>
+          <iyy>0.00034059927272727259</iyy>
+          <iyz>-3.2032699999999998e-09</iyz>
+          <izz>0.0003395562727272727</izz>
+        </inertia>
+      </inertial>
+      <collision name='RH_fut_collision'>
+        <pose>0.01 0 0 0 1.5707963267948966 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.16</length>
+            <radius>0.01</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.59999999999999998</mu>
+              <mu2>0.59999999999999998</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='RH_fut_fixed_joint_lump__RH_FOOT_collision_1'>
+        <pose>0.12 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.02</radius>
+          </sphere>
+        </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <kp>1000000</kp>
+              <kd>100</kd>
+            </ode>
+          </contact>
+          <friction>
+            <ode>
+              <mu>0.90000000000000002</mu>
+              <mu2>0.90000000000000002</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='RH_fut_visual_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://home/siddarth/husky_ws/src/husky_model_description/meshes/fr_foot.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/DarkGrey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+          <diffuse>0.372500002 0.372500002 0.372500002 1</diffuse>
+          <ambient>0.372500002 0.372500002 0.372500002 1</ambient>
+        </material>
+      </visual>
+      <self_collide>true</self_collide>
+    </link>
+
+    <joint name='RH_ankle' type='revolute'>
+      <pose relative_to='RH_calf'>0.33300000000000002 0 0 0 0 3.1415926535897931</pose>
+      <parent>RH_calf</parent>
+      <child>RH_fut</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1.570796326794897</lower>
+          <upper>1.570796326794897</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <link name='br_fibula'>
+      <pose relative_to='br_control_rod'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.17299999999999999 0 0 0 0 0</pose>
+        <mass>0.02</mass>
+        <inertia>
+          <ixx>8.92564e-07</ixx>
+          <ixy>-6.0893099999999998e-13</ixy>
+          <ixz>-4.5247700000000001e-07</ixz>
+          <iyy>0.00040501600000000001</iyy>
+          <iyz>-1.2125999999999999e-09</iyz>
+          <izz>0.00040542799999999999</izz>
+        </inertia>
+      </inertial>
+      <collision name='br_fibula_collision'>
+        <pose>0.14000000000000001 0 0 0 1.5707963267948966 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.23999999999999999</length>
+            <radius>0.01</radius>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name='br_fibula_visual_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://home/siddarth/husky_ws/src/husky_model_description/meshes/fr_fibula.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.372500002 0.372500002 0.372500002 1</diffuse>
+          <ambient>0.372500002 0.372500002 0.372500002 1</ambient>
+        </material>
+      </visual>
+    </link>
+
+
+    <joint name='br_control_rod' type='revolute'>
+      <pose relative_to='RH_thigh'>0.12 0 -0.043099999999999999 0 0 -3.1415926535897931</pose>
+      <parent>RH_thigh</parent>
+      <child>br_fibula</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0.73303828583761843</lower>
+          <upper>1.867502299633933</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+
+        <mimic joint="RF_KFE" axis="axis">
+            <multiplier>-1</multiplier>
+            <offset>0</offset>
+        </mimic>
+      </axis>
+    </joint>
+
+    <link name='front_left_blade'>
+      <pose relative_to='front_left_blade_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0.0040000000000000001 0 0 0</pose>
+        <mass>0.0061000000000000004</mass>
+        <inertia>
+          <ixx>9.7500000000000006e-08</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.6700000000000001e-06</iyy>
+          <iyz>0</iyz>
+          <izz>1.6700000000000001e-06</izz>
+        </inertia>
+      </inertial>
+    </link>
+
+
+     <joint name='front_left_blade_joint' type='revolute'>
+      <pose relative_to='root'>0.14099999999999999 0.189 0.10000000000000001 0 0 0</pose>
+      <parent>root</parent>
+      <child>front_left_blade</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+          <effort>10000</effort>
+          <velocity>10000</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+
+
+    <plugin filename="gz-sim-lift-drag-system"
+            name="gz::sim::systems::LiftDrag">
+        <a0>0.3</a0>
+        <alpha_stall>1.4</alpha_stall>
+        <cla>4.2500</cla>
+        <cda>1.2041</cda>
+        <cma>0.0</cma>
+        <cla_stall>-0.025</cla_stall>
+        <cda_stall>0.0</cda_stall>
+        <cma_stall>0.0</cma_stall>
+        <area>0.002</area>
+        <air_density>1.2041</air_density>
+        <cp>0.084 0 0</cp>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>front_left_blade</link_name>
+    </plugin>
+
+    <link name='front_right_blade'>
+      <pose relative_to='front_right_blade_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0.0040000000000000001 0 0 0</pose>
+        <mass>0.0061000000000000004</mass>
+        <inertia>
+          <ixx>9.7500000000000006e-08</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.6700000000000001e-06</iyy>
+          <iyz>0</iyz>
+          <izz>1.6700000000000001e-06</izz>
+        </inertia>
+      </inertial>
+    </link>
+
+    <joint name='front_right_blade_joint' type='revolute'>
+      <pose relative_to='root'>0.14099999999999999 -0.189 0.10000000000000001 0 0 0</pose>
+      <parent>root</parent>
+      <child>front_right_blade</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+          <effort>10000</effort>
+          <velocity>10000</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+
+
+    <plugin filename="gz-sim-lift-drag-system"
+            name="gz::sim::systems::LiftDrag">
+        <a0>0.3</a0>
+        <alpha_stall>1.4</alpha_stall>
+        <cla>4.2500</cla>
+        <cda>1.2041</cda>
+        <cma>0.0</cma>
+        <cla_stall>-0.025</cla_stall>
+        <cda_stall>0.0</cda_stall>
+        <cma_stall>0.0</cma_stall>
+        <area>0.002</area>
+        <air_density>1.2041</air_density>
+        <cp>0.084 0 0</cp>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>front_right_blade</link_name>
+    </plugin>
+
+    <link name='rear_left_blade'>
+      <pose relative_to='rear_left_blade_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0.0040000000000000001 0 0 0</pose>
+        <mass>0.0061000000000000004</mass>
+        <inertia>
+          <ixx>9.7500000000000006e-08</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.6700000000000001e-06</iyy>
+          <iyz>0</iyz>
+          <izz>1.6700000000000001e-06</izz>
+        </inertia>
+      </inertial>
+    </link>
+
+    <joint name='rear_left_blade_joint' type='revolute'>
+      <pose relative_to='root'>-0.125 0.189 0.10000000000000001 0 0 0</pose>
+      <parent>root</parent>
+      <child>rear_left_blade</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+          <effort>10000</effort>
+          <velocity>10000</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <plugin filename="gz-sim-lift-drag-system"
+            name="gz::sim::systems::LiftDrag">
+        <a0>0.3</a0>
+        <alpha_stall>1.4</alpha_stall>
+        <cla>4.2500</cla>
+        <cda>1.2041</cda>
+        <cma>0.0</cma>
+        <cla_stall>-0.025</cla_stall>
+        <cda_stall>0.0</cda_stall>
+        <cma_stall>0.0</cma_stall>
+        <area>0.002</area>
+        <air_density>1.2041</air_density>
+        <cp>0.084 0 0</cp>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>rear_left_blade</link_name>
+    </plugin>
+
+    <link name='rear_right_blade'>
+      <pose relative_to='rear_right_blade_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0.0040000000000000001 0 0 0</pose>
+        <mass>0.0061000000000000004</mass>
+        <inertia>
+          <ixx>9.7500000000000006e-08</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.6700000000000001e-06</iyy>
+          <iyz>0</iyz>
+          <izz>1.6700000000000001e-06</izz>
+        </inertia>
+      </inertial>
+    </link>
+
+    <joint name='rear_right_blade_joint' type='revolute'>
+      <pose relative_to='root'>-0.125 -0.189 0.10000000000000001 0 0 0</pose>
+      <parent>root</parent>
+      <child>rear_right_blade</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-10000000000000000</lower>
+          <upper>10000000000000000</upper>
+          <effort>10000</effort>
+          <velocity>10000</velocity>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+
+
+    <plugin filename="gz-sim-lift-drag-system"
+            name="gz::sim::systems::LiftDrag">
+        <a0>0.3</a0>
+        <alpha_stall>1.4</alpha_stall>
+        <cla>4.2500</cla>
+        <cda>1.2041</cda>
+        <cma>0.0</cma>
+        <cla_stall>-0.025</cla_stall>
+        <cda_stall>0.0</cda_stall>
+        <cma_stall>0.0</cma_stall>
+        <area>0.002</area>
+        <air_density>1.2041</air_density>
+        <cp>0.084 0 0</cp>
+        <forward>0 1 0</forward>
+        <upward>0 0 1</upward>
+        <link_name>rear_left_blade</link_name>
+    </plugin>
+
+    <joint name='unitree_imu_joint' type='revolute'>
+      <pose relative_to='root'>0 0 0 0 0 0</pose>
+      <parent>root</parent>
+      <child>unitree_imu</child>
+      <axis>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+        </limit>
+        <dynamics>
+          <damping>0</damping>
+          <friction>0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <xyz>0 0 1</xyz>
+      </axis>
+      <physics>
+        <ode>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.20000000000000001</erp>
+          </limit>
+        </ode>
+      </physics>
+    </joint>
+    
+    <link name='unitree_imu'>
+      <pose relative_to='unitree_imu_joint'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>9.9999999999999995e-07</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>9.9999999999999995e-07</iyy>
+          <iyz>0</iyz>
+          <izz>9.9999999999999995e-07</izz>
+        </inertia>
+      </inertial>
+      <visual name='unitree_imu_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.014999999999999999 0.014999999999999999 0.0040000000000000001</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Orange</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+
+    
+    
+    <plugin
+            filename="gz-sim-joint-state-publisher-system"
+            name="gz::sim::systems::JointStatePublisher">
+            <topic>joint_states</topic> <!--from <ros><remapping> -->
+            
+            <joint_name>RF_HAA</joint_name>
+            <joint_name>LF_HAA</joint_name>
+            <joint_name>LH_HAA</joint_name>
+            <joint_name>RH_HAA</joint_name>
+            <joint_name>RF_HFE</joint_name>
+            <joint_name>LF_HFE</joint_name>
+            <joint_name>LH_HFE</joint_name>
+            <joint_name>RH_HFE</joint_name>
+            <joint_name>RF_KFE</joint_name>
+            <joint_name>LF_KFE</joint_name>
+            <joint_name>LH_KFE</joint_name>
+            <joint_name>RH_KFE</joint_name>
+            <joint_name>RF_ankle</joint_name>
+            <joint_name>LF_ankle</joint_name>
+            <joint_name>RH_ankle</joint_name>
+            <!-- <joint_name>RF_foot_fixed</joint_name>
+            <joint_name>LF_foot_fixed</joint_name>
+            <joint_name>LH_foot_fixed</joint_name>
+            <joint_name>RH_foot_fixed</joint_name> -->
+            
+            <joint_name>fr_control_rod</joint_name>
+            <joint_name>fl_control_rod</joint_name>
+            <joint_name>bl_control_rod</joint_name>
+            <joint_name>br_control_rod</joint_name>
+            <joint_name>front_right_blade_joint</joint_name>
+            <joint_name>front_left_blade_joint</joint_name>
+            <joint_name>rear_left_blade_joint</joint_name>
+            <joint_name>rear_right_blade_joint</joint_name>
+            <!-- <joint_name>camera_joint</joint_name>
+            <joint_name>camera_optical_joint</joint_name> -->
+      </plugin>
+
     </model>
   </world>
 </sdf>

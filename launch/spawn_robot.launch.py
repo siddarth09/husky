@@ -15,7 +15,7 @@ def generate_launch_description():
     os.environ["GZ_SIM_RESOURCE_PATH"] += os.pathsep + gazebo_models_path
 
     rviz_launch_arg = DeclareLaunchArgument(
-        'rviz', default_value='true',
+        'rviz', default_value='false',
         description='Open RViz'
     )
 
@@ -101,38 +101,36 @@ def generate_launch_description():
         package="ros_gz_bridge",
         executable="parameter_bridge",
         arguments=[
-            "/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock",
-            "/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist",
-            "/odom@nav_msgs/msg/Odometry@gz.msgs.Odometry",
-            "/joint_states@sensor_msgs/msg/JointState@gz.msgs.Model",
+            "/joint_states@sensor_msgs/msg/JointState@gz.msgs.JointState",
             #"/tf@tf2_msgs/msg/TFMessage@gz.msgs.Pose_V",
             #"/camera/image@sensor_msgs/msg/Image@gz.msgs.Image",
-            "/camera/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo",
-            "/imu@sensor_msgs/msg/Imu@gz.msgs.IMU",
-            "/navsat@sensor_msgs/msg/NavSatFix@gz.msgs.NavSat",
-            "/scan@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan",
-            "/scan/points@sensor_msgs/msg/PointCloud2@gz.msgs.PointCloudPacked",
-            "/camera/depth_image@sensor_msgs/msg/Image@gz.msgs.Image",
-            "/camera/points@sensor_msgs/msg/PointCloud2@gz.msgs.PointCloudPacked",
+            # "/camera/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo",
+            # "/imu@sensor_msgs/msg/Imu@gz.msgs.IMU",
+            # "/camera/depth_image@sensor_msgs/msg/Image@gz.msgs.Image",
+            # "/camera/points@sensor_msgs/msg/PointCloud2@gz.msgs.PointCloudPacked",
         ],
         output="screen",
         parameters=[
             {'use_sim_time': LaunchConfiguration('use_sim_time')},
         ]
     )
+    bridge_params = os.path.join(
+        get_package_share_directory('husky_model_description'),
+        'params',
+        'bridge.yaml'
+    )
 
     # Node to bridge camera image with image_transport and compressed_image_transport
     gz_image_bridge_node = Node(
-        package="ros_gz_image",
-        executable="image_bridge",
+        
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
         arguments=[
-            "/camera/image",
+            '--ros-args',
+            '-p',
+            f'config_file:={bridge_params}',
         ],
-        output="screen",
-        parameters=[
-            {'use_sim_time': LaunchConfiguration('use_sim_time'),
-             'camera.image.compressed.jpeg_quality': 75},
-        ],
+        output='screen',
     )
 
     # Relay node to republish /camera/camera_info to /camera/image/camera_info

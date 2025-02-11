@@ -30,6 +30,7 @@ install(DIRECTORY
   urdf
   meshes
   worlds
+  params
   DESTINATION share/${PROJECT_NAME}
 )
 
