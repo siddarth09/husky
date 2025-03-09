@@ -2011,454 +2011,306 @@
     </joint>
 
     <!-- This needs to be changed, need visuals added-->
-    <link name='front_left_blade'>
-    <!-- Pose of the link relative to its parent joint -->
-      <pose relative_to='front_left_blade_joint'>0 0 0 0 0 0</pose>
-     
-    <!-- Need to add visuals here w/ name-->
-      <!-- Visual for the blade itself -->
-      <visual name='front_left_blade'>
-          <pose>0 0 0 0 0 0</pose> <!-- The base of the blade -->
-          <geometry>
-              <cylinder>
-                  <radius>0.005</radius> <!-- Radius of the blade -->
-                  <length>0.12</length>  <!-- Length of the blade -->
-              </cylinder>
-          </geometry>
-          <material>
-              <ambient>0.8 0.8 0.8 1.0</ambient>
-              <diffuse>0.8 0.8 0.8 1.0</diffuse>
-          </material>
-      </visual>
-
-      <!-- Visual for the root of the blade -->
-      <visual name='front_left_blade_root'>
-        <pose>0 0 0 0 0 0</pose>
-          <geometry>
-            <sphere>
-              <radius>0.01</radius>
-            </sphere>
-          </geometry>
-          <material>
-            <ambient>0 1 1 0.5</ambient>
-            <diffuse>0 1 1 0.5</diffuse>
-          </material>
+    <link name='rotor_0'>
+        <pose>0.13 -0.22 0.023 0 0 0</pose>
+        <inertial>
+            <pose>0 0 0 0 0 0</pose>
+            <mass>0.025</mass>
+            <inertia>
+                <ixx>9.75e-06</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>0.000166704</iyy>
+                <iyz>0</iyz>
+                <izz>0.000167604</izz>
+            </inertia>
+        </inertial>
+        <collision name='rotor_0_collision'>
+            <pose>0 0 0 0 0 0</pose>
+            <geometry>
+                <cylinder>
+                    <length>0.003</length>
+                    <radius>0.08</radius>
+                </cylinder>
+            </geometry>
+            <surface>
+                <contact>
+                    <ode/>
+                </contact>
+                <friction>
+                    <ode/>
+                </friction>
+            </surface>
+        </collision>
+    <visual name='rotor_0_visual'>
+            <pose>0 0 0 0 0 0</pose>
+            <geometry>
+                <mesh>
+                    <scale>0.3 0.3 0.3</scale>
+                    <uri>package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0 0 1</ambient>
+                <diffuse>0 0 1</diffuse>
+                <specular>1 1 1 1</specular>
+                <pbr>
+                    <metal>
+                        <metalness>0.5</metalness>
+                        <roughness>0.5</roughness>
+                    </metal>
+                </pbr>
+            </material>
         </visual>
-
-      <!-- Visual for the tip of the blade -->
-      <visual name='front_left_blade_tip'>
-        <pose>0.12 0 0 0 0 0</pose>
-          <geometry>
-            <sphere>
-              <radius>0.01</radius>
-            </sphere>
-          </geometry>
-          <material>
-            <ambient>1.0 0.65 0</ambient>
-            <diffuse>1.0 0.65 0</diffuse>
-          </material>
-      </visual>
-
-      <!-- Visual for the center of pressure (cp) -->
-      <visual name='front_left_blade_cp'>
-      <pose>0.084 0 0 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.003</radius>
-          </sphere>
-        </geometry>
-        <material>
-          <ambient>1 1 0</ambient>
-          <diffuse>1 1 0</diffuse>
-        </material>
-      </visual>
-
-      <!-- Visual for the forward direction (cp_forward) -->
-      <visual name='front_left_blade_cp_forward'>
-        <pose>0.084 0.02 0 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.003</radius>
-          </sphere>
-        </geometry>
-        <material>
-          <ambient>1 0 0</ambient>
-          <diffuse>1 0 0</diffuse>
-        </material>
-      </visual>
-
-      <!-- Visual for the upward direction (cp_upward) -->
-      <visual name='front_left_blade_cp_upward'>
-        <pose>0.084 0 0.02 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.003</radius>
-          </sphere>
-        </geometry>
-        <material>
-          <ambient>0 0 1</ambient>
-          <diffuse>0 0 1</diffuse>
-        </material>
-      </visual>
-      <inertial>
-        <pose>0 0 0.0040000000000000001 0 0 0</pose>
-        <mass>0.0061000000000000004</mass>
-        <inertia>
-          <ixx>9.7500000000000006e-08</ixx>
-          <ixy>0</ixy>
-          <ixz>0</ixz>
-          <iyy>1.6700000000000001e-06</iyy>
-          <iyz>0</iyz>
-          <izz>1.6700000000000001e-06</izz>
-        </inertia>
-      </inertial>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
     </link>
-
-
-     <joint name='front_left_blade_joint' type='revolute'>
-      <pose relative_to='root'>0.14099999999999999 0.189 0.10000000000000001 0 0 0</pose>
-      <parent>root</parent>
-      <child>front_left_blade</child>
-      <axis>
-        <xyz>0 0 1</xyz>
-        <limit>
-          <lower>-10000000000000000</lower>
-          <upper>10000000000000000</upper>
-          <effort>10000</effort>
-          <velocity>10000</velocity>
-        </limit>
-        <dynamics>
-          <damping>0</damping>
-          <friction>0</friction>
-          <spring_reference>0</spring_reference>
-          <spring_stiffness>0</spring_stiffness>
-        </dynamics>
-      </axis>
+    <joint name='rotor_0_joint' type='revolute'>
+        <child>rotor_0</child>
+        <parent>root</parent>
+        <axis>
+            <xyz>0 0 1</xyz>
+            <limit>
+                <lower>-1e+16</lower>
+                <upper>1e+16</upper>
+            </limit>
+            <dynamics>
+                <damping>0.004</damping>
+            </dynamics>
+        </axis>
+        <physics>
+            <ode>
+                <implicit_spring_damper>1</implicit_spring_damper>
+            </ode>
+        </physics>
     </joint>
 
-    <!-- This needs to be changed, need visuals added-->
-    <link name='front_right_blade'>
-      <pose relative_to='front_right_blade_joint'>0 0 0 0 0 0</pose>
-      <!-- Visual for the root of the front right blade -->
-      <visual name='front_right_blade_root'>
-        <pose>0 0 0 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.01</radius>
-          </sphere>
-        </geometry>
-        <material>
-          <ambient>0 1 1 0.5</ambient>
-          <diffuse>0 1 1 0.5</diffuse>
-        </material>
-      </visual>
-
-      <!-- Visual for the tip of the front right blade -->
-      <visual name='front_right_blade_tip'>
-        <pose>0.12 0 0 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.01</radius>
-          </sphere>
-        </geometry>
-        <material>
-          <ambient>1.0 0.65 0</ambient>
-          <diffuse>1.0 0.65 0</diffuse>
-        </material>
-      </visual>
-
-      <!-- Visual for the center of pressure (cp) for the front right blade -->
-      <visual name='front_right_blade_cp'>
-        <pose>0.084 0 0 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.003</radius>
-          </sphere>
-        </geometry>
-        <material>
-          <ambient>1 1 0</ambient>
-          <diffuse>1 1 0</diffuse>
-        </material>
-      </visual>
-
-      <!-- Visual for the forward direction (cp_forward) for the front right blade -->
-      <visual name='front_right_blade_cp_forward'>
-        <pose>0.084 0.02 0 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.003</radius>
-          </sphere>
-        </geometry>
-        <material>
-          <ambient>1 0 0</ambient>
-          <diffuse>1 0 0</diffuse>
-        </material>
-      </visual>
-
-      <!-- Visual for the upward direction (cp_upward) for the front right blade -->
-      <visual name='front_right_blade_cp_upward'>
-        <pose>0.084 0 0.02 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.003</radius>
-          </sphere>
-        </geometry>
-        <material>
-          <ambient>0 0 1</ambient>
-          <diffuse>0 0 1</diffuse>
-        </material>
-      </visual>
-      <inertial>
-        <pose>0 0 0.0040000000000000001 0 0 0</pose>
-        <mass>0.0061000000000000004</mass>
-        <inertia>
-          <ixx>9.7500000000000006e-08</ixx>
-          <ixy>0</ixy>
-          <ixz>0</ixz>
-          <iyy>1.6700000000000001e-06</iyy>
-          <iyz>0</iyz>
-          <izz>1.6700000000000001e-06</izz>
-        </inertia>
-      </inertial>
+    <link name='rotor_1'>
+        <pose>-0.13 0.2 0.023 0 0 0</pose>
+        <inertial>
+            <pose>0 0 0 0 0 0</pose>
+            <mass>0.025</mass>
+            <inertia>
+                <ixx>9.75e-06</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>0.000166704</iyy>
+                <iyz>0</iyz>
+                <izz>0.000167604</izz>
+            </inertia>
+        </inertial>
+        <collision name='rotor_1_collision'>
+            <pose>0 0 0 0 0 0</pose>
+            <geometry>
+                <cylinder>
+                    <length>0.003</length>
+                    <radius>0.08</radius>
+                </cylinder>
+            </geometry>
+            <surface>
+                <contact>
+                    <ode/>
+                </contact>
+                <friction>
+                    <ode/>
+                </friction>
+            </surface>
+        </collision>
+        <visual name='rotor_1_visual'>
+            <pose>0 0 0 0 0 0</pose>
+            <geometry>
+                <mesh>
+                    <scale>0.3 0.3 0.3</scale>
+                    <uri>package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_ccw.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0 0 1 1</ambient>
+                <diffuse>0 0 1 1</diffuse>
+                <specular>1 1 1 1</specular>
+                <pbr>
+                    <metal>
+                        <metalness>0.5</metalness>
+                        <roughness>0.5</roughness>
+                    </metal>
+                </pbr>
+            </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
     </link>
-
-    <!-- This can stay the same-->
-    <joint name='front_right_blade_joint' type='revolute'>
-      <pose relative_to='root'>0.14099999999999999 -0.189 0.10000000000000001 0 0 0</pose>
-      <parent>root</parent>
-      <child>front_right_blade</child>
-      <axis>
-        <xyz>0 0 1</xyz>
-        <limit>
-          <lower>-1e+16</lower>
-          <upper>1e+16</upper>
-          <effort>10000</effort>
-          <velocity>10000</velocity>
-        </limit>
-        <dynamics>
-          <damping>0</damping>
-          <friction>0</friction>
-          <spring_reference>0</spring_reference>
-          <spring_stiffness>0</spring_stiffness>
-        </dynamics>
-      </axis>
+    <joint name='rotor_1_joint' type='revolute'>
+        <child>rotor_1</child>
+        <parent>root</parent>
+        <axis>
+            <xyz>0 0 1</xyz>
+            <limit>
+                <lower>-1e+16</lower>
+                <upper>1e+16</upper>
+            </limit>
+            <dynamics>
+                <damping>0.004</damping>
+            </dynamics>
+        </axis>
+        <physics>
+            <ode>
+                <implicit_spring_damper>1</implicit_spring_damper>
+            </ode>
+        </physics>
     </joint>
 
-    <!-- This needs to be changed, need visuals added-->
-    <!-- Need to add a second blade? 2 for the rotor-->
-    <link name='rear_left_blade'>
-      <pose relative_to='rear_left_blade_joint'>0 0 0 0 0 0</pose>
-      <!-- Visual for the root of the rear left blade -->
-      <visual name='rear_left_blade_root'>
-        <pose>0 0 0 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.01</radius>
-          </sphere>
-        </geometry>
-        <material>
-          <ambient>0 1 1 0.5</ambient>
-          <diffuse>0 1 1 0.5</diffuse>
-        </material>
-      </visual>
-
-      <!-- Visual for the tip of the rear left blade -->
-      <visual name='rear_left_blade_tip'>
-        <pose>0.12 0 0 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.01</radius>
-          </sphere>
-        </geometry>
-        <material>
-          <ambient>1.0 0.65 0</ambient>
-          <diffuse>1.0 0.65 0</diffuse>
-        </material>
-      </visual>
-
-      <!-- Visual for the center of pressure (cp) for the rear left blade -->
-      <visual name='rear_left_blade_cp'>
-        <pose>0.084 0 0 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.003</radius>
-          </sphere>
-        </geometry>
-        <material>
-          <ambient>1 1 0</ambient>
-          <diffuse>1 1 0</diffuse>
-        </material>
-      </visual>
-
-      <!-- Visual for the forward direction (cp_forward) for the rear left blade -->
-      <visual name='rear_left_blade_cp_forward'>
-        <pose>0.084 0.02 0 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.003</radius>
-          </sphere>
-        </geometry>
-        <material>
-          <ambient>1 0 0</ambient>
-          <diffuse>1 0 0</diffuse>
-        </material>
-      </visual>
-
-      <!-- Visual for the upward direction (cp_upward) for the rear left blade -->
-      <visual name='rear_left_blade_cp_upward'>
-        <pose>0.084 0 0.02 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.003</radius>
-          </sphere>
-        </geometry>
-        <material>
-          <ambient>0 0 1</ambient>
-          <diffuse>0 0 1</diffuse>
-        </material>
-      </visual>
-      <inertial>
-        <pose>0 0 0.0040000000000000001 0 0 0</pose>
-        <mass>0.0061000000000000004</mass>
-        <inertia>
-          <ixx>9.7500000000000006e-08</ixx>
-          <ixy>0</ixy>
-          <ixz>0</ixz>
-          <iyy>1.6700000000000001e-06</iyy>
-          <iyz>0</iyz>
-          <izz>1.6700000000000001e-06</izz>
-        </inertia>
-      </inertial>
+    <link name='rotor_2'>
+        <pose>0.13 0.22 0.023 0 0 0</pose>
+        <inertial>
+            <pose>0 0 0 0 0 0</pose>
+            <mass>0.025</mass>
+            <inertia>
+                <ixx>9.75e-06</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>0.000166704</iyy>
+                <iyz>0</iyz>
+                <izz>0.000167604</izz>
+            </inertia>
+        </inertial>
+        <collision name='rotor_2_collision'>
+            <pose>0 0 0 0 0 0</pose>
+            <geometry>
+                <cylinder>
+                    <length>0.003</length>
+                    <radius>0.08</radius>
+                </cylinder>
+            </geometry>
+            <surface>
+                <contact>
+                    <ode/>
+                </contact>
+                <friction>
+                    <ode/>
+                </friction>
+            </surface>
+        </collision>
+        <visual name='rotor_2_visual'>
+            <pose>0 0 0 0 0 0</pose>
+            <geometry>
+                <mesh>
+                    <scale>0.3 0.3 0.3</scale>
+                    <uri>package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0 1 0</ambient>
+                <diffuse>0 1 0</diffuse>
+                <specular>1 1 1 1</specular>
+                <pbr>
+                    <metal>
+                        <metalness>0.5</metalness>
+                        <roughness>0.5</roughness>
+                    </metal>
+                </pbr>
+            </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
     </link>
-
-    <joint name='rear_left_blade_joint' type='revolute'>
-      <pose relative_to='root'>-0.125 0.189 0.10000000000000001 0 0 0</pose>
-      <parent>root</parent>
-      <child>rear_left_blade</child>
-      <axis>
-        <xyz>0 0 1</xyz>
-        <limit>
-          <lower>-10000000000000000</lower>
-          <upper>10000000000000000</upper>
-          <effort>10000</effort>
-          <velocity>10000</velocity>
-        </limit>
-        <dynamics>
-          <damping>0</damping>
-          <friction>0</friction>
-          <spring_reference>0</spring_reference>
-          <spring_stiffness>0</spring_stiffness>
-        </dynamics>
-      </axis>
+    <joint name='rotor_2_joint' type='revolute'>
+        <child>rotor_2</child>
+        <parent>root</parent>
+        <axis>
+            <xyz>0 0 1</xyz>
+            <limit>
+                <lower>-1e+16</lower>
+                <upper>1e+16</upper>
+            </limit>
+            <dynamics>
+                <damping>0.004</damping>
+            </dynamics>
+        </axis>
+        <physics>
+            <ode>
+                <implicit_spring_damper>1</implicit_spring_damper>
+            </ode>
+        </physics>
     </joint>
 
-
-    <!-- This needs to be changed, need visuals added-->
-    <link name='rear_right_blade'>
-      <pose relative_to='rear_right_blade_joint'>0 0 0 0 0 0</pose>
-      <!-- Visual for the root of the rear right blade -->
-      <visual name='rear_right_blade_root'>
-        <pose>0 0 0 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.01</radius>
-          </sphere>
-        </geometry>
-        <material>
-          <ambient>0 1 1 0.5</ambient>
-          <diffuse>0 1 1 0.5</diffuse>
-        </material>
-      </visual>
-
-      <!-- Visual for the tip of the rear right blade -->
-      <visual name='rear_right_blade_tip'>
-        <pose>0.12 0 0 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.01</radius>
-          </sphere>
-        </geometry>
-        <material>
-          <ambient>1.0 0.65 0</ambient>
-          <diffuse>1.0 0.65 0</diffuse>
-        </material>
-      </visual>
-
-      <!-- Visual for the center of pressure (cp) for the rear right blade -->
-      <visual name='rear_right_blade_cp'>
-        <pose>0.084 0 0 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.003</radius>
-          </sphere>
-        </geometry>
-        <material>
-          <ambient>1 1 0</ambient>
-          <diffuse>1 1 0</diffuse>
-        </material>
-      </visual>
-
-      <!-- Visual for the forward direction (cp_forward) for the rear right blade -->
-      <visual name='rear_right_blade_cp_forward'>
-        <pose>0.084 0.02 0 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.003</radius>
-          </sphere>
-        </geometry>
-        <material>
-          <ambient>1 0 0</ambient>
-          <diffuse>1 0 0</diffuse>
-        </material>
-      </visual>
-
-      <!-- Visual for the upward direction (cp_upward) for the rear right blade -->
-      <visual name='rear_right_blade_cp_upward'>
-        <pose>0.084 0 0.02 0 0 0</pose>
-        <geometry>
-          <sphere>
-            <radius>0.003</radius>
-          </sphere>
-        </geometry>
-        <material>
-          <ambient>0 0 1</ambient>
-          <diffuse>0 0 1</diffuse>
-        </material>
-      </visual>
-      <inertial>
-        <pose>0 0 0.0040000000000000001 0 0 0</pose>
-        <mass>0.0061000000000000004</mass>
-        <inertia>
-          <ixx>9.7500000000000006e-08</ixx>
-          <ixy>0</ixy>
-          <ixz>0</ixz>
-          <iyy>1.6700000000000001e-06</iyy>
-          <iyz>0</iyz>
-          <izz>1.6700000000000001e-06</izz>
-        </inertia>
-      </inertial>
+    <link name='rotor_3'>
+        <pose>-0.13 -0.2 0.023 0 0 0</pose>
+        <inertial>
+            <pose>0 0 0 0 0 0</pose>
+            <mass>0.025</mass>
+            <inertia>
+                <ixx>9.75e-06</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>0.000166704</iyy>
+                <iyz>0</iyz>
+                <izz>0.000167604</izz>
+            </inertia>
+        </inertial>
+        <collision name='rotor_3_collision'>
+            <pose>0 0 0 0 0 0</pose>
+            <geometry>
+                <cylinder>
+                    <length>0.003</length>
+                    <radius>0.08</radius>
+                </cylinder>
+            </geometry>
+            <surface>
+                <contact>
+                    <ode/>
+                </contact>
+                <friction>
+                    <ode/>
+                </friction>
+            </surface>
+        </collision>
+        <visual name='rotor_3_visual'>
+            <pose>0 0 0 0 0 0</pose>
+            <geometry>
+                <mesh>
+                    <scale>0.3 0.3 0.3</scale>
+                    <uri>package://ardupilot_gazebo/models/iris_with_standoffs/meshes/iris_prop_cw.dae</uri>
+                </mesh>
+            </geometry>
+            <material>
+                <ambient>0 1 0</ambient>
+                <diffuse>0 1 0</diffuse>
+                <specular>1 1 1 1</specular>
+                <pbr>
+                    <metal>
+                        <metalness>0.5</metalness>
+                        <roughness>0.5</roughness>
+                    </metal>
+                </pbr>
+            </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
     </link>
-
-    <joint name='rear_right_blade_joint' type='revolute'>
-      <pose relative_to='root'>-0.125 -0.189 0.10000000000000001 0 0 0</pose>
-      <parent>root</parent>
-      <child>rear_right_blade</child>
-      <axis>
-        <xyz>0 0 1</xyz>
-        <limit>
-          <lower>-10000000000000000</lower>
-          <upper>10000000000000000</upper>
-          <effort>10000</effort>
-          <velocity>10000</velocity>
-        </limit>
-        <dynamics>
-          <damping>0</damping>
-          <friction>0</friction>
-          <spring_reference>0</spring_reference>
-          <spring_stiffness>0</spring_stiffness>
-        </dynamics>
-      </axis>
+    <joint name='rotor_3_joint' type='revolute'>
+        <child>rotor_3</child>
+        <parent>root</parent>
+        <axis>
+            <xyz>0 0 1</xyz>
+            <limit>
+                <lower>-1e+16</lower>
+                <upper>1e+16</upper>
+            </limit>
+            <dynamics>
+                <damping>0.004</damping>
+            </dynamics>
+        </axis>
+        <physics>
+            <ode>
+                <implicit_spring_damper>1</implicit_spring_damper>
+            </ode>
+        </physics>
     </joint>
+
 
     <joint name='unitree_imu_joint' type='revolute'>
       <pose relative_to='root'>0 0 0 0 0 0</pose>
@@ -2534,7 +2386,7 @@
     <cp>0.084 0 0</cp>
     <forward>0 1 0</forward>
     <upward>0 0 1</upward>
-    <link_name>rear_left_blade</link_name>
+    <link_name>rotor_0</link_name>
 </plugin>
 
 <!-- Opposite Plugin for Rear Left Blade-->
@@ -2553,7 +2405,7 @@
     <cp>-0.084 0 0</cp> <!-- Inverted lift coefficient for opposite direction -->
     <forward>0 -1 0</forward> <!-- Opposite forward direction -->
     <upward>0 0 1</upward>
-    <link_name>rear_left_blade</link_name>
+    <link_name>rotor_0</link_name>
 </plugin>
 
 <!-- Plugin for Rear Right Blade-->
@@ -2572,7 +2424,7 @@
     <cp>0.084 0 0</cp>
     <forward>0 1 0</forward>
     <upward>0 0 1</upward>
-    <link_name>rear_right_blade</link_name>
+    <link_name>rotor_1</link_name>
 </plugin>
 
 <!-- Opposite Plugin for Rear Right Blade-->
@@ -2591,7 +2443,7 @@
     <cp>-0.084 0 0</cp> <!-- Inverted lift coefficient for opposite direction -->
     <forward>0 -1 0</forward> <!-- Opposite forward direction -->
     <upward>0 0 1</upward>
-    <link_name>rear_right_blade</link_name>
+    <link_name>rotor_1</link_name>
 </plugin>
 
 <!-- Plugin for Front Left Blade-->
@@ -2610,7 +2462,7 @@
     <cp>0.084 0 0</cp>
     <forward>0 1 0</forward>
     <upward>0 0 1</upward>
-    <link_name>front_left_blade</link_name>
+    <link_name>rotor_2</link_name>
 </plugin>
 
 <!-- Opposite Plugin for Front Left Blade-->
@@ -2629,7 +2481,7 @@
     <cp>-0.084 0 0</cp> <!-- Inverted lift coefficient for opposite direction -->
     <forward>0 -1 0</forward> <!-- Opposite forward direction -->
     <upward>0 0 1</upward>
-    <link_name>front_left_blade</link_name>
+    <link_name>rotor_2</link_name>
 </plugin>
 
 <!-- Plugin for Front Right Blade-->
@@ -2648,7 +2500,7 @@
     <cp>0.084 0 0</cp>
     <forward>0 1 0</forward>
     <upward>0 0 1</upward>
-    <link_name>front_right_blade</link_name>
+    <link_name>rotor_3</link_name>
 </plugin>
 
 <!-- Opposite Plugin for Front Right Blade-->
@@ -2667,7 +2519,7 @@
     <cp>-0.084 0 0</cp> <!-- Inverted lift coefficient for opposite direction -->
     <forward>0 -1 0</forward> <!-- Opposite forward direction -->
     <upward>0 0 1</upward>
-    <link_name>front_right_blade</link_name>
+    <link_name>rotor_3</link_name>
 </plugin>
 
 
@@ -2701,10 +2553,10 @@
             <joint_name>fl_control_rod</joint_name>
             <joint_name>bl_control_rod</joint_name>
             <joint_name>br_control_rod</joint_name>
-            <joint_name>front_right_blade_joint</joint_name>
-            <joint_name>front_left_blade_joint</joint_name>
-            <joint_name>rear_left_blade_joint</joint_name>
-            <joint_name>rear_right_blade_joint</joint_name>
+            <joint_name>rotor_0_joint</joint_name>
+            <joint_name>rotor_1_joint</joint_name>
+            <joint_name>rotor_2_joint</joint_name>
+            <joint_name>rotor_3_joint</joint_name>
             <!-- <joint_name>camera_joint</joint_name>
             <joint_name>camera_optical_joint</joint_name> -->
       </plugin>
