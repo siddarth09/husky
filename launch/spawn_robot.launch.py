@@ -52,7 +52,7 @@ def generate_launch_description():
             "-topic", "robot_description",  # Missing comma was here
             "-x", "0.0",
             "-y", "0.0",
-            "-z", "0.8"
+            "-z", "0.9"
         ],
         output="screen",
         parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')}]
