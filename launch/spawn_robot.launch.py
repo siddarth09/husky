@@ -111,8 +111,37 @@ def generate_launch_description():
         ],
         remappings=[('/tf', 'tf'), ('/tf_static', 'tf_static')]
     )
+    controller_config_arg = DeclareLaunchArgument(
+        'controller',
+        default_value=PathJoinSubstitution([pkg_husky_description, 'config', 'controller.yaml']),
+        description='Path to the controller YAML file'
+    )
+    controller_config = LaunchConfiguration('controller')
 
+    ros2_control_node = Node(
+        package='controller_manager',
+        executable='ros2_control_node',
+        parameters=[
+            controller_config,
+            {'use_sim_time': LaunchConfiguration('use_sim_time')}
+        ],
+        output='screen'
+    )
 
+    # Spawners (you must make sure the controllers exist in your YAML!)
+    joint_state_broadcaster_spawner = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['joint_state_broadcaster'],
+        output='screen'
+    )
+
+    effort_controller_spawner = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['joint_effort_controller'],
+        output='screen'
+    )
     # Launch description object
     launchDescriptionObject = LaunchDescription()
 

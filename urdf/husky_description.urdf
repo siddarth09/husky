@@ -1,984 +1,1205 @@
-<?xml version="1.0"?>
-<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
-     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
-     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
-<robot
-  name="husky_description" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="husky">
 
-  <xacro:include filename="$(find husky_description)/urdf/husky_description.gazebo" />
-  <link
-    name="base_link">
-    <inertial>
-      <origin
-        xyz="0.0140956979209418 -0.000138179701387094 -0.0992508085792652"
-        rpy="0 0 0" />
-      <mass
-        value="3.12256189485822" />
-      <inertia
-        ixx="0.0121294723376015"
-        ixy="3.6611140225149E-08"
-        ixz="3.39923565764928E-05"
-        iyy="0.0177212221964865"
-        iyz="-2.45541012870126E-08"
-        izz="0.0270281508517904" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/base_link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color rgba="0 0 0 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/base_link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <link
-    name="FR_Hip_Link">
-    <inertial>
-      <origin
-        xyz="0.0166589553386252 0.00297993976212601 2.23624052146376E-05"
-        rpy="0 0 0" />
-      <mass
-        value="0.0238624098048875" />
-      <inertia
-        ixx="5.6796289944201E-06"
-        ixy="1.6833317677962E-07"
-        ixz="1.26241368803341E-09"
-        iyy="1.05772260570972E-05"
-        iyz="1.87269823782473E-08"
-        izz="8.08421986558341E-06" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/FR_Hip_Link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.501960784313725 0.501960784313725 0.501960784313725 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/FR_Hip_Link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="FR_H_F"
-    type="revolute">
-    <origin
-      xyz="0.197786147802266 -0.0451303815618817 -0.153554926347478"
-      rpy="-0.00751056345262528 0 0" />
-    <parent
-      link="base_link" />
-    <child
-      link="FR_Hip_Link" />
-    <axis
-      xyz="-1 0 0" />
-    <limit
-      lower="-0.0872665"
-      upper="0.436332"
-      effort="33.5"
-      velocity="8.7267" />
-  </joint>
-  <link
-    name="FR_Thigh_Link">
-    <inertial>
-      <origin
-        xyz="0.07823137365753 -0.0340532240073881 0.000803211738448883"
-        rpy="0 0 0" />
-      <mass
-        value="0.258099968398277" />
-      <inertia
-        ixx="3.52616698113408E-05"
-        ixy="-1.66844768574749E-09"
-        ixz="-2.34493663880667E-08"
-        iyy="7.68789476455668E-05"
-        iyz="2.46856379158353E-09"
-        izz="5.35248327001695E-05" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/FR_Thigh_Link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color rgba="0 0 0 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/FR_Thigh_Link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="FR_H_S"
-    type="revolute">
-    <origin
-      xyz="0.0279999999999999 0 0"
-      rpy="0.00751056345262547 0 0" />
-    <parent
-      link="FR_Hip_Link" />
-    <child
-      link="FR_Thigh_Link" />
-    <axis
-      xyz="0 -1 0" />
-    <limit
-      lower="-1.13446"
-      upper="-0.436332"
-      effort="33.5"
-      velocity="8.7267" />
-  </joint>
-  <link
-    name="FR_Tibia_Link">
-    <inertial>
-      <origin
-        xyz="-0.105065866384467 -0.00461856086308783 -0.06750708146745"
-        rpy="0 0 0" />
-      <mass
-        value="0.0539315830575853" />
-      <inertia
-        ixx="2.20271311033782E-05"
-        ixy="-8.58128240626144E-07"
-        ixz="-2.04918236600125E-05"
-        iyy="5.96884344420977E-05"
-        iyz="-5.53593329656329E-07"
-        izz="4.07620478941051E-05" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/FR_Tibia_Link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color rgba="0 0 0 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/FR_Tibia_Link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="FR_T_K"
-    type="revolute">
-    <origin
-      xyz="0.149499995520385 0 0"
-      rpy="0 0 0" />
-    <parent
-      link="FR_Thigh_Link" />
-    <child
-      link="FR_Tibia_Link" />
-    <axis
-      xyz="0 -1 0" />
-    <limit
-      lower="0.733038"
-      upper="1.8675023"
-      effort="33.5"
-      velocity="8.7267" />
-  </joint>
-  <link
-    name="FR_Foot_Link">
-    <inertial>
-      <origin
-        xyz="0.0498806247417834 -0.0241020272480392 -0.0178185923611135"
-        rpy="0 0 0" />
-      <mass
-        value="0.0716006180325176" />
-      <inertia
-        ixx="1.382005094306E-05"
-        ixy="-9.04042828615244E-12"
-        ixz="1.18194544732016E-05"
-        iyy="4.65451923197461E-05"
-        iyz="2.55234266488828E-12"
-        izz="4.39714620714958E-05" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/FR_Foot_Link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color rgba="0 0 0 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/FR_Foot_Link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="FR_T_A"
-    type="revolute">
-    <origin
-      xyz="-0.27175 0.015102 -0.17399"
-      rpy="0 -0.4 0" />
-    <parent
-      link="FR_Tibia_Link" />
-    <child
-      link="FR_Foot_Link" />
-    <axis
-      xyz="0 -1 0" />
-    <limit
-      lower="-1.570963"
-      upper="1.570963"
-      effort="33.5"
-      velocity="8.7267" />
-    <mimic
-      joint="FR_T_K"
-      multiplier="-1"
-      offset="0" />
-  </joint>
-  <link
-    name="FL_Hip_Link">
-    <inertial>
-      <origin
-        xyz="0.0166589553386255 -0.00298002366814985 1.90417676348975E-08"
-        rpy="0 0 0" />
-      <mass
-        value="0.0238624098048877" />
-      <inertia
-        ixx="5.67962899442015E-06"
-        ixy="-1.68337910434566E-07"
-        ixz="1.88703735606119E-12"
-        iyy="1.05773667226442E-05"
-        iyz="1.69261090017549E-12"
-        izz="8.0840792000366E-06" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/FL_Hip_Link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.501960784313725 0.501960784313725 0.501960784313725 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/FL_Hip_Link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="FL_H_F"
-    type="revolute">
-    <origin
-      xyz="0.197786147802266 0.0448696184381173 -0.153554926347478"
-      rpy="0 0 0" />
-    <parent
-      link="base_link" />
-    <child
-      link="FL_Hip_Link" />
-    <axis
-      xyz="-1 0 0" />
-    <limit
-      lower="-0.436332"
-      upper="0.0872665"
-      effort="33.5"
-      velocity="8.7267" />
-  </joint>
-  <link
-    name="FL_Thigh_Link">
-    <inertial>
-      <origin
-        xyz="0.0782313768124775 0.0340532240239729 -0.000802890141886031"
-        rpy="0 0 0" />
-      <mass
-        value="0.258099968662267" />
-      <inertia
-        ixx="3.52616696197159E-05"
-        ixy="1.66838371626373E-09"
-        ixz="2.33742637493808E-08"
-        iyy="7.68789477505795E-05"
-        iyz="2.46853006266231E-09"
-        izz="5.35248330028541E-05" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/FL_Thigh_Link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color rgba="0 0 0 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/FL_Thigh_Link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="FL_H_S"
-    type="revolute">
-    <origin
-      xyz="0.0280000000000001 0 0"
-      rpy="0 0 0" />
-    <parent
-      link="FL_Hip_Link" />
-    <child
-      link="FL_Thigh_Link" />
-    <axis
-      xyz="0 1 0" />
-    <limit
-      lower="0.436332"
-      upper="1.13446"
-      effort="33.5"
-      velocity="8.7267" />
-  </joint>
-  <link
-    name="FL_Tibia_Link">
-    <inertial>
-      <origin
-        xyz="-0.105075825587496 0.00461849981637 -0.0674941933434928"
-        rpy="0 0 0" />
-      <mass
-        value="0.0539315806550318" />
-      <inertia
-        ixx="2.20288670578511E-05"
-        ixy="8.60228126288038E-07"
-        ixz="-2.04926155902286E-05"
-        iyy="5.96884389491682E-05"
-        iyz="5.50328041951635E-07"
-        izz="4.0760318327747E-05" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/FL_Tibia_Link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color rgba="0 0 0 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/FL_Tibia_Link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="FL_T_K"
-    type="revolute">
-    <origin
-      xyz="0.14949999551506 0 0"
-      rpy="0 0 0" />
-    <parent
-      link="FL_Thigh_Link" />
-    <child
-      link="FL_Tibia_Link" />
-    <axis
-      xyz="0 1 0" />
-    <limit
-      lower="-1.8675023"
-      upper="-0.733038"
-      effort="33.5"
-      velocity="8.7267" />
-  </joint>
-  <link
-    name="FL_Foot_Link">
-    <inertial>
-      <origin
-        xyz="0.0498803256236964 0.0134999946773079 -0.0172232491896995"
-        rpy="0 0 0" />
-      <mass
-        value="0.0716006180319317" />
-      <inertia
-        ixx="1.38204596942264E-05"
-        ixy="-9.04039577313995E-12"
-        ixz="1.18199758164081E-05"
-        iyy="4.65451923195016E-05"
-        iyz="2.55245075610104E-12"
-        izz="4.39710533199317E-05" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/FL_Foot_Link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color rgba="0 0 0 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/FL_Foot_Link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="FL_T_A"
-    type="revolute">
-    <origin
-      xyz="-0.27175 -0.0045 -0.17458"
-      rpy="0 2.1908 0" />
-    <parent
-      link="FL_Tibia_Link" />
-    <child
-      link="FL_Foot_Link" />
-    <axis
-      xyz="0 -1 0" />
-    <limit
-      lower="-1.570963"
-      upper="1.570963"
-      effort="33.5"
-      velocity="8.7267"/>
-    <mimic
-      joint="FL_T_K"
-      multiplier="-1"
-      offset="0" />
-  </joint>
-  <link
-    name="RR_Hip_Link">
-    <inertial>
-      <origin
-        xyz="0.0166589553386252 0.00298002366814516 -1.90417685508315E-08"
-        rpy="0 0 0" />
-      <mass
-        value="0.0238624098048877" />
-      <inertia
-        ixx="5.67962899442014E-06"
-        ixy="1.68337910434561E-07"
-        ixz="-1.88703744978195E-12"
-        iyy="1.05773667226442E-05"
-        iyz="1.69260988328871E-12"
-        izz="8.08407920003659E-06" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/RR_Hip_Link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.501960784313725 0.501960784313725 0.501960784313725 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/RR_Hip_Link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="RR_H_F"
-    type="revolute">
-    <origin
-      xyz="-0.197113852197734 -0.0451303815618833 -0.153404926347476"
-      rpy="0 0 0" />
-    <parent
-      link="base_link" />
-    <child
-      link="RR_Hip_Link" />
-    <axis
-      xyz="-1 0 0" />
-    <limit
-      lower="-0.0872665"
-      upper="0.436332"
-      effort="33.5"
-      velocity="8.7267"/>
-  </joint>
-  <link
-    name="RR_Thigh_Link">
-    <inertial>
-      <origin
-        xyz="0.0782313734898608 -0.034053224038266 0.000803224948594694"
-        rpy="0 0 0" />
-      <mass
-        value="0.258099969136502" />
-      <inertia
-        ixx="3.52616698210797E-05"
-        ixy="-1.66843081497276E-09"
-        ixz="-2.3452481589572E-08"
-        iyy="7.68789479923172E-05"
-        iyz="2.46856586319707E-09"
-        izz="5.3524833051181E-05" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/RR_Thigh_Link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color rgba="0 0 0 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/RR_Thigh_Link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="RR_H_S"
-    type="revolute">
-    <origin
-      xyz="0.0279999999999999 0 0"
-      rpy="0 0 0" />
-    <parent
-      link="RR_Hip_Link" />
-    <child
-      link="RR_Thigh_Link" />
-    <axis
-      xyz="0 -1 0" />
-    <limit
-      lower="-1.13446"
-      upper="-0.436332"
-      effort="33.5"
-      velocity="8.7267" />
-  </joint>
-  <link
-    name="RR_Tibia_Link">
-    <inertial>
-      <origin
-        xyz="-0.105065862869079 -0.00461850138692389 -0.0675070872970608"
-        rpy="0 0 0" />
-      <mass
-        value="0.0539315825879713" />
-      <inertia
-        ixx="2.20271335769345E-05"
-        ixy="-8.58128171571033E-07"
-        ixz="-2.04918247126493E-05"
-        iyy="5.96884341654846E-05"
-        iyz="-5.53593341146132E-07"
-        izz="4.07620451226912E-05" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/RR_Tibia_Link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color rgba="0 0 0 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/RR_Tibia_Link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="RR_T_K"
-    type="revolute">
-    <origin
-      xyz="0.149499995520578 0 0"
-      rpy="0 0 0" />
-    <parent
-      link="RR_Thigh_Link" />
-    <child
-      link="RR_Tibia_Link" />
-    <axis
-      xyz="0 -1 0" />
-    <limit
-      lower="0.733038"
-      upper="1.8675023"
-      effort="33.5"
-      velocity="8.7267" />
-  </joint>
-  <link
-    name="RR_Foot_Link">
-    <inertial>
-      <origin
-        xyz="0.0498806283679974 -0.0135000053224708 -0.0172223785041606"
-        rpy="0 0 0" />
-      <mass
-        value="0.0716006180325222" />
-      <inertia
-        ixx="1.38200477748177E-05"
-        ixy="-9.04037414394073E-12"
-        ixz="1.181945043211E-05"
-        iyy="4.65451923197481E-05"
-        iyz="2.55232998769601E-12"
-        izz="4.39714652397413E-05" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/RR_Foot_Link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color rgba="0 0 0 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/RR_Foot_Link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="RR_T_A"
-    type="revolute">
-    <origin
-      xyz="-0.27175 0.0045 -0.17458"
-      rpy="0 -0.4 0" />
-    <parent
-      link="RR_Tibia_Link" />
-    <child
-      link="RR_Foot_Link" />
-    <axis
-      xyz="0 -1 0" />
-    <limit
-      lower="-1.570963"
-      upper="1.570963"
-      effort="33.5"
-      velocity="8.7267" />
-    <mimic
-      joint="RR_T_K"
-      multiplier="-1"
-      offset="0" />
-  </joint>
-  <link
-    name="RL_Hip_Link">
-    <inertial>
-      <origin
-        xyz="0.0166589553386253 -0.00298002366814985 1.9041766163852E-08"
-        rpy="0 0 0" />
-      <mass
-        value="0.0238624098048876" />
-      <inertia
-        ixx="5.67962899442013E-06"
-        ixy="-1.6833791043457E-07"
-        ixz="1.88703738328454E-12"
-        iyy="1.05773667226441E-05"
-        iyz="1.69261090096281E-12"
-        izz="8.08407920003657E-06" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/RL_Hip_Link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.501960784313725 0.501960784313725 0.501960784313725 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/RL_Hip_Link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="RL_H_F"
-    type="revolute">
-    <origin
-      xyz="-0.197113852197734 0.0448696184381157 -0.153404926347476"
-      rpy="0 0 0" />
-    <parent
-      link="base_link" />
-    <child
-      link="RL_Hip_Link" />
-    <axis
-      xyz="-1 0 0" />
-    <limit
-      lower="-0.436332"
-      upper="0.0872665"
-      effort="33.5"
-      velocity="8.7267" />
-  </joint>
-  <link
-    name="RL_Thigh_Link">
-    <inertial>
-      <origin
-        xyz="0.0782313769738834 0.0340532240486941 -0.000802890179051829"
-        rpy="0 0 0" />
-      <mass
-        value="0.258099969300998" />
-      <inertia
-        ixx="3.52616696532939E-05"
-        ixy="1.66843195434922E-09"
-        ixz="2.3374277171292E-08"
-        iyy="7.68789480604727E-05"
-        iyz="2.46856867805387E-09"
-        izz="5.35248332877278E-05" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/RL_Thigh_Link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color rgba="0 0 0 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/RL_Thigh_Link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="RL_H_S"
-    type="revolute">
-    <origin
-      xyz="0.0279999999999999 0 0"
-      rpy="0 0 0" />
-    <parent
-      link="RL_Hip_Link" />
-    <child
-      link="RL_Thigh_Link" />
-    <axis
-      xyz="0 1 0" />
-    <limit
-      lower="0.436332"
-      upper="1.13446"
-      effort="33.5"
-      velocity="8.7267" />
-  </joint>
-  <link
-    name="RL_Tibia_Link">
-    <inertial>
-      <origin
-        xyz="-0.105075824411251 0.00461849974182806 -0.0674941928895348"
-        rpy="0 0 0" />
-      <mass
-        value="0.0539315812388781" />
-      <inertia
-        ixx="2.20288672652186E-05"
-        ixy="8.60228173550506E-07"
-        ixz="-2.04926154156093E-05"
-        iyy="5.96884392984058E-05"
-        iyz="5.50327989730781E-07"
-        izz="4.07603184971206E-05" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/RL_Tibia_Link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color rgba="0 0 0 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/RL_Tibia_Link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="RL_T_K"
-    type="revolute">
-    <origin
-      xyz="0.149499995515122 0 0"
-      rpy="0 0 0" />
-    <parent
-      link="RL_Thigh_Link" />
-    <child
-      link="RL_Tibia_Link" />
-    <axis
-      xyz="0 1 0" />
-    <limit
-      lower="-1.8675023"
-      upper="-0.733038"
-      effort="33.5"
-      velocity="8.7267" />
-  </joint>
-  <link
-    name="RL_Foot_Link">
-    <inertial>
-      <origin
-        xyz="0.0498803256236178 0.0134999946773832 -0.0172232491917698"
-        rpy="0 0 0" />
-      <mass
-        value="0.0716006180319318" />
-      <inertia
-        ixx="1.38204596942734E-05"
-        ixy="-9.04039575848348E-12"
-        ixz="1.1819975816468E-05"
-        iyy="4.65451923195017E-05"
-        iyz="2.55245075476628E-12"
-        izz="4.39710533198848E-05" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/RL_Foot_Link.STL" />
-      </geometry>
-      <material
-        name="">
-        <color rgba="0 0 0 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://husky_description/meshes/RL_Foot_Link.STL" />
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="RL_T_A"
-    type="revolute">
-    <origin
-      xyz="-0.27175 -0.0075 -0.17458"
-      rpy="0 2.1908 0" />
-    <parent
-      link="RL_Tibia_Link" />
-    <child
-      link="RL_Foot_Link" />
-    <axis
-      xyz="0 -1 0" />
-    <limit
-      lower="-1.570963"
-      upper="1.570963"
-      effort="33.5"
-      velocity="8.7267" />
-    <mimic
-      joint="RL_T_K"
-      multiplier="-1"
-      offset="0" />
-  </joint>
+  <xacro:arg name="robot_type" default="husky"/>
+
+  <!-- Properties -->
+  <xacro:property name="motor_damping" value="0" />
+  <xacro:property name="free_joint_damping" value="0" />
+  <xacro:property name="motor_sfriction" value="0" />
+  <xacro:property name="free_joint_sfriction" value="0" />
+  <xacro:property name="efflim" value="33.5" />
+
+  <xacro:property name="r_hip_frontal_ipos" value="${-0*pi/180}" />
+  <xacro:property name="r_hip_frontal_lowlim" value="${-25*pi/180}" />
+  <xacro:property name="r_hip_frontal_uplim" value="${-5*pi/180}" />
+  <xacro:property name="l_hip_frontal_ipos" value="${-180*pi/180}" />
+  <xacro:property name="l_hip_frontal_lowlim" value="${5*pi/180}" />
+  <xacro:property name="l_hip_frontal_uplim" value="${25*pi/180}" />
+
+  <xacro:property name="r_axis" value="1" />
+  <xacro:property name="l_axis" value="1" />
+
+  <gazebo>
+        <plugin filename="libgz_ros2_control-system.so" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+
+            <parameters>$(find husky_description)/config/controller.yaml</parameters>
+
+            <!-- Optional: specify controller manager node name -->
+            <controller_manager_prefix_node_name>controller_manager</controller_manager_prefix_node_name>
+
+            <!-- Optional: tuning -->
+            <hold_joints>true</hold_joints>
+            <position_proportional_gain>0.5</position_proportional_gain>
+
+        </plugin>
+   </gazebo>
 
 
+  <!-- Joint Definition -->
+  <joint name="RF_HAA" type="revolute">
+    <parent link="base"/>
+    <child link="RF_hip"/>
+    <origin rpy="-1.5708 ${r_hip_frontal_ipos} -1.5708" xyz="0.2087 -0.045 0.0001"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <dynamics damping="${motor_damping}" friction="${motor_sfriction}"/>
+    <limit effort="${efflim}" lower="${r_hip_frontal_lowlim}" upper="${r_hip_frontal_uplim}" velocity="8.7267"/>
+  </joint>
 
   
+  <!-- LF_HAA Joint -->
+<joint name="LF_HAA" type="revolute">
+  <parent link="base"/>
+  <child link="LF_hip"/>
+  <origin rpy="-1.5708 ${l_hip_frontal_ipos} -1.5708" xyz="0.2087 0.045 0.0001"/>
+  <axis xyz="0.0 0.0 1.0"/>
+  <dynamics damping="${motor_damping}" friction="${motor_sfriction}"/>
+  <limit effort="${efflim}" lower="${l_hip_frontal_lowlim}" upper="${l_hip_frontal_uplim}" velocity="8.7267"/>
+</joint>
+
+<!-- LH_HAA Joint -->
+<joint name="LH_HAA" type="revolute">
+  <parent link="base"/>
+  <child link="LH_hip"/>
+  <origin rpy="-1.5708 ${l_hip_frontal_ipos} -1.5708" xyz="-0.1862 0.045 0.0002"/>
+  <axis xyz="0.0 0.0 1.0"/>
+  <dynamics damping="${motor_damping}" friction="${motor_sfriction}"/>
+  <limit effort="${efflim}" lower="${l_hip_frontal_lowlim}" upper="${l_hip_frontal_uplim}" velocity="8.7267"/>
+</joint>
+
+<!-- RH_HAA Joint -->
+<joint name="RH_HAA" type="revolute">
+  <parent link="base"/>
+  <child link="RH_hip"/>
+  <origin rpy="-1.5708 ${r_hip_frontal_ipos} -1.5708" xyz="-0.1862 -0.045 0.0002"/>
+  <axis xyz="0.0 0.0 1.0"/>
+  <dynamics damping="${motor_damping}" friction="${motor_sfriction}"/>
+  <limit effort="${efflim}" lower="${r_hip_frontal_lowlim}" upper="${r_hip_frontal_uplim}" velocity="8.7267"/>
+</joint>
+
+
+  <!--hip sag ipos -121.61 r -58.39 l-->
+  <xacro:property name="fr_hip_sagittal_ipos" value="${-90*pi/180}" />
+  <xacro:property name="fr_hip_sagittal_lowlim" value="${-65*pi/180}" />
+  <xacro:property name="fr_hip_sagittal_uplim" value="${-25*pi/180}" />
+  <xacro:property name="fl_hip_sagittal_ipos" value="${270*pi/180}" />
+  <xacro:property name="fl_hip_sagittal_lowlim" value="${25*pi/180}" />
+  <xacro:property name="fl_hip_sagittal_uplim" value="${65*pi/180}" />
+
+  <!--hip sag ipos -131.32 r -48.68 l-->
+  <xacro:property name="br_hip_sagittal_ipos" value="${-90*pi/180}" />
+  <xacro:property name="br_hip_sagittal_lowlim" value="${-65*pi/180}" />
+  <xacro:property name="br_hip_sagittal_uplim" value="${-25*pi/180}" />
+  <xacro:property name="bl_hip_sagittal_ipos" value="${270*pi/180}" />
+  <xacro:property name="bl_hip_sagittal_lowlim" value="${25*pi/180}" />
+  <xacro:property name="bl_hip_sagittal_uplim" value="${65*pi/180}" />
+
+  <!-- RF_HFE Joint -->
+<joint name="RF_HFE" type="revolute">
+  <parent link="RF_hip"/>
+  <child link="RF_thigh"/>
+  <origin rpy="-1.5708 ${fr_hip_sagittal_ipos} -1.5708" xyz="0.1031 0.0 0.0"/>
+  <axis xyz="0.0 0.0 ${r_axis}"/>
+  <dynamics damping="${motor_damping}" friction="${motor_sfriction}"/>
+  <limit effort="${efflim}" lower="${fr_hip_sagittal_lowlim}" upper="${fr_hip_sagittal_uplim}" velocity="8.7267"/>
+</joint>
+
+<!-- LF_HFE Joint -->
+<joint name="LF_HFE" type="revolute">
+  <parent link="LF_hip"/>
+  <child link="LF_thigh"/>
+  <origin rpy="-1.5708 ${fl_hip_sagittal_ipos} -1.5708" xyz="0.1031 0.0 0.0"/>
+  <axis xyz="0.0 0.0 ${l_axis}"/>
+  <dynamics damping="${motor_damping}" friction="${motor_sfriction}"/>
+  <limit effort="${efflim}" lower="${fl_hip_sagittal_lowlim}" upper="${fl_hip_sagittal_uplim}" velocity="8.7267"/>
+</joint>
+
+  
+  <!-- LH_HFE Joint -->
+<joint name="LH_HFE" type="revolute">
+  <parent link="LH_hip"/>
+  <child link="LH_thigh"/>
+  <origin rpy="-1.5708 ${bl_hip_sagittal_ipos} -1.5708" xyz="0.1031 0.0 0.0"/>
+  <axis xyz="0.0 0.0 ${l_axis}"/>
+  <dynamics damping="${motor_damping}" friction="${motor_sfriction}"/>
+  <limit effort="${efflim}" lower="${bl_hip_sagittal_lowlim}" upper="${bl_hip_sagittal_uplim}" velocity="8.7267"/>
+</joint>
+
+<!-- RH_HFE Joint -->
+<joint name="RH_HFE" type="revolute">
+  <parent link="RH_hip"/>
+  <child link="RH_thigh"/>
+  <origin rpy="-1.5708 ${br_hip_sagittal_ipos} -1.5708" xyz="0.1031 0.0 0.0"/>
+  <axis xyz="0.0 0.0 ${r_axis}"/>
+  <dynamics damping="${motor_damping}" friction="${motor_sfriction}"/>
+  <limit effort="${efflim}" lower="${br_hip_sagittal_lowlim}" upper="${br_hip_sagittal_uplim}" velocity="8.7267"/>
+</joint>
+
+
+  <xacro:property name="r_knee_ipos" value="${-180*pi/180}" />  
+  <xacro:property name="r_knee_lowlim" value="${42*pi/180}" />
+  <xacro:property name="r_knee_uplim" value="${107*pi/180}" />
+  <xacro:property name="l_knee_ipos" value="${180*pi/180}" />
+  <xacro:property name="l_knee_lowlim" value="${-107*pi/180}" />
+  <xacro:property name="l_knee_uplim" value="${-42*pi/180}" />
+
+  <!-- RF_KFE Joint -->
+<joint name="RF_KFE" type="revolute">
+  <parent link="RF_thigh"/>
+  <child link="RF_calf"/>
+  <origin rpy="0 0 ${r_knee_ipos}" xyz="0.18 0.0 -0.0431"/>
+  <axis xyz="0.0 0.0 ${r_axis}"/>
+  <dynamics damping="${motor_damping}" friction="${motor_sfriction}"/>
+  <limit effort="${efflim}" lower="${r_knee_lowlim}" upper="${r_knee_uplim}" velocity="8.7267"/>
+</joint>
+
+<!-- LF_KFE Joint -->
+<joint name="LF_KFE" type="revolute">
+  <parent link="LF_thigh"/>
+  <child link="LF_calf"/>
+  <origin rpy="0 0 ${l_knee_ipos}" xyz="0.18 0.0 -0.0431"/>
+  <axis xyz="0.0 0.0 ${l_axis}"/>
+  <dynamics damping="${motor_damping}" friction="${motor_sfriction}"/>
+  <limit effort="${efflim}" lower="${l_knee_lowlim}" upper="${l_knee_uplim}" velocity="8.7267"/>
+</joint>
+
+<!-- LH_KFE Joint -->
+<joint name="LH_KFE" type="revolute">
+  <parent link="LH_thigh"/>
+  <child link="LH_calf"/>
+  <origin rpy="0 0 ${l_knee_ipos}" xyz="0.18 0.0 -0.0431"/>
+  <axis xyz="0.0 0.0 ${l_axis}"/>
+  <dynamics damping="${motor_damping}" friction="${motor_sfriction}"/>
+  <limit effort="${efflim}" lower="${l_knee_lowlim}" upper="${l_knee_uplim}" velocity="8.7267"/>
+</joint>
+
+<!-- RH_KFE Joint -->
+<joint name="RH_KFE" type="revolute">
+  <parent link="RH_thigh"/>
+  <child link="RH_calf"/>
+  <origin rpy="0 0 ${r_knee_ipos}" xyz="0.18 0.0 -0.0431"/>
+  <axis xyz="0.0 0.0 ${r_axis}"/>
+  <dynamics damping="${motor_damping}" friction="${motor_sfriction}"/>
+  <limit effort="${efflim}" lower="${r_knee_lowlim}" upper="${r_knee_uplim}" velocity="8.7267"/>
+</joint>
+
+  <!--ANKLES-->
+
+  <xacro:property name="l_ankle_lowlim" value="${-90*pi/180}" />
+  <xacro:property name="l_ankle_uplim" value="${90*pi/180}" />
+  <xacro:property name="r_ankle_lowlim" value="${-90*pi/180}" />
+  <xacro:property name="r_ankle_uplim" value="${90*pi/180}" />
+
+  <!--REAL FOOT SECTION 1/3 (COMMENT THIS IN, COMMENT BELOW OUT)-->
+  <!-- RF_ankle Joint -->
+<joint name="RF_ankle" type="revolute">
+  <parent link="RF_calf"/>
+  <child link="RF_fut"/>
+  <origin rpy="0 0 ${l_knee_ipos}" xyz="0.333 0.0 0.0"/>
+  <axis xyz="0.0 0.0 1.0"/>
+  <mimic joint="RF_KFE" multiplier="-1"/>
+  <dynamics damping="${free_joint_damping}" friction="${motor_sfriction}"/>
+  <limit effort="${efflim}" lower="${r_ankle_lowlim}" upper="${r_ankle_uplim}" velocity="8.7267"/>
+</joint>
+
+<!-- LF_ankle Joint -->
+<joint name="LF_ankle" type="revolute">
+  <parent link="LF_calf"/>
+  <child link="LF_fut"/>
+  <origin rpy="0 0 ${r_knee_ipos}" xyz="0.333 0.0 0.0"/>
+  <axis xyz="0.0 0.0 1.0"/>
+  <mimic joint="LF_KFE" multiplier="-1"/>
+  <dynamics damping="${free_joint_damping}" friction="${motor_sfriction}"/>
+  <limit effort="${efflim}" lower="${l_ankle_lowlim}" upper="${l_ankle_uplim}" velocity="8.7267"/>
+</joint>
+
+<!-- LH_ankle Joint -->
+<joint name="LH_ankle" type="revolute">
+  <parent link="LH_calf"/>
+  <child link="LH_fut"/>
+  <origin rpy="0 0 ${r_knee_ipos}" xyz="0.333 0.0 0.0"/>
+  <axis xyz="0.0 0.0 1.0"/>
+  <mimic joint="LH_KFE" multiplier="-1"/>
+  <dynamics damping="${free_joint_damping}" friction="${motor_sfriction}"/>
+  <limit effort="${efflim}" lower="${l_ankle_lowlim}" upper="${l_ankle_uplim}" velocity="8.7267"/>
+</joint>
+
+<!-- RH_ankle Joint -->
+<joint name="RH_ankle" type="revolute">
+  <parent link="RH_calf"/>
+  <child link="RH_fut"/>
+  <origin rpy="0 0 ${l_knee_ipos}" xyz="0.333 0.0 0.0"/>
+  <axis xyz="0.0 0.0 1.0"/>
+  <mimic joint="RH_KFE" multiplier="-1"/>
+  <dynamics damping="${free_joint_damping}" friction="${motor_sfriction}"/>
+  <limit effort="${efflim}" lower="${r_ankle_lowlim}" upper="${r_ankle_uplim}" velocity="8.7267"/>
+</joint>
+
+
+  <joint name="RF_foot_fixed" type="fixed">
+    <parent link="RF_fut"/>
+    <child link="RF_FOOT"/>
+    <origin rpy="0 0 0"   xyz="0.0 0.0 0.0"/>
+  </joint>
+  
+  <joint name="LF_foot_fixed" type="fixed">
+    <parent link="LF_fut"/>
+    <child link="LF_FOOT"/>
+    <origin rpy="0 0 0"   xyz="0.0 0.0 0.0"/>
+  </joint>
+  
+  <joint name="LH_foot_fixed" type="fixed">
+    <parent link="LH_fut"/>
+    <child link="LH_FOOT"/>
+    <origin rpy="0 0 0"   xyz="0.0 0.0 0.0"/>
+  </joint>
+  
+  <joint name="RH_foot_fixed" type="fixed">
+    <parent link="RH_fut"/>
+    <child link="RH_FOOT"/>
+    <origin rpy="0 0 0"   xyz="0.0 0.0 0.0"/>
+  </joint>
+
+  <gazebo reference="RF_foot_fixed">
+    <disableFixedJointLumping>false</disableFixedJointLumping>
+  </gazebo>
+
+  <gazebo reference="LF_foot_fixed">
+    <disableFixedJointLumping>false</disableFixedJointLumping>
+  </gazebo>
+
+  <gazebo reference="LH_foot_fixed">
+    <disableFixedJointLumping>false</disableFixedJointLumping>
+  </gazebo>
+
+  <gazebo reference="RH_foot_fixed">
+    <disableFixedJointLumping>false</disableFixedJointLumping>
+  </gazebo>
+  
+
+  <!--LINKS-->  
+
+
+  <link name="root">
+  </link>
+  
+  <joint name="root_to_base_joint" type="fixed">
+    <parent link="root"/>
+    <child link="base"/>
+    <origin rpy="0 0 0"   xyz="0 0.0 0.0"/>
+  </joint>
+  
+  
+  <link name="base">
+    <inertial>
+      <mass value="3.1895"/> 
+      <origin rpy="0.0 0.0 0" xyz="-0.0301 0 0.0241"/>
+      <inertia ixx="0.0170990623" ixy="3.09e-08" ixz="-5.394e-07" iyy="0.0115476717" iyz="4.77948e-05" izz="0.0268461573"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.3 0.1 0.12"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 -0.1"/>
+      <geometry>
+        <box size="0.4 0.16 0.32"/>
+      </geometry>
+    </collision>
+    <visual name="base_visual">
+      <origin rpy="-1.5708 0.0 1.5708" xyz=".212 -.258 0.128"/>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/body_link_prop_part_bin.STL" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.251 0.251 0.251 1.0"/>
+      </material>
+    </visual>
+  </link>
+  <gazebo reference="base">
+    <mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <self_collide>1</self_collide>
+    <kp value="1000000.0"/>
+    <kd value="100.0"/>
+  </gazebo>
+  <xacro:property name="hip_ix" value="0.02" />
+  <xacro:property name="hip_length" value="0.08" />
+  <xacro:property name="hip_radius" value="0.03" />
+
+  <link name="RF_hip">
+    <inertial>
+      <mass value="0.02"/>
+      <origin rpy="0 0.0 0.0" xyz="0.026 0 0"/>
+      <inertia ixx="0.00000495196" ixy="2.86338e-09" ixz="-0.00000134345"  iyy="0.0000137904" iyz="0.0000000399775" izz="0.0000152492"/>
+    </inertial>
+    <collision>
+      <origin rpy="0.0 1.5708 0.0" xyz="${hip_ix} 0 0"/>
+      <geometry>
+        <cylinder length="${hip_length}" radius="${hip_radius}"/>
+      </geometry>
+    </collision>
+    <visual name="RF_hip_visual">
+      <origin rpy="3.1416 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/fr_hip.STL" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.298 0.298 0.298 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="LF_hip">
+    <inertial>
+      <mass value="0.02"/>
+      <origin rpy="0 0.0 0.0" xyz="0.026 0 0"/>
+      <inertia ixx="0.00000495196" ixy="2.86338e-09" ixz="-0.00000134345"  iyy="0.0000137904" iyz="0.0000000399775" izz="0.0000152492"/>
+    </inertial>
+    <collision>
+      <origin rpy="0.0 1.5708 0.0" xyz="${hip_ix} 0 0"/>
+      <geometry>
+        <cylinder length="${hip_length}" radius="${hip_radius}"/>
+      </geometry>
+    </collision>
+    <visual name="LF_hip_visual">
+      <origin rpy="3.1416 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/bl_hip.STL" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.298 0.298 0.298 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="LH_hip">
+    <inertial>
+      <mass value="0.02"/>
+      <origin rpy="0 0.0 0.0" xyz="0.026 0 0"/>
+      <inertia ixx="0.00000495196" ixy="2.86338e-09" ixz="-0.00000134345"  iyy="0.0000137904" iyz="0.0000000399775" izz="0.0000152492"/>
+    </inertial>
+    <collision>
+      <origin rpy="0.0 1.5708 0.0" xyz="${hip_ix} 0 0"/>
+      <geometry>
+        <cylinder length="${hip_length}" radius="${hip_radius}"/>
+      </geometry>
+    </collision>
+    <visual name="LH_hip_visual">
+      <origin rpy="3.1416 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/bl_hip.STL" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.298 0.298 0.298 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="RH_hip">
+    <inertial>
+      <mass value="0.02"/>
+      <origin rpy="0 0.0 0.0" xyz="0.026 0 0"/>
+      <inertia ixx="0.00000495196" ixy="2.86338e-09" ixz="-0.00000134345"  iyy="0.0000137904" iyz="0.0000000399775" izz="0.0000152492"/>
+    </inertial>
+    <collision>
+      <origin rpy="0.0 1.5708 0.0" xyz="${hip_ix} 0 0"/>
+      <geometry>
+        <cylinder length="${hip_length}" radius="${hip_radius}"/>
+      </geometry>
+    </collision>
+    <visual name="RH_hip_visual">
+      <origin rpy="3.1416 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/fr_hip.STL" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.298 0.298 0.298 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <gazebo reference="RF_hip">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+  <gazebo reference="LF_hip">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+  <gazebo reference="LH_hip">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+  <gazebo reference="RH_hip">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <xacro:property name="femur_ix" value="0.09" />
+  <xacro:property name="femur_length" value="0.20" />
+  <xacro:property name="femur_radius" value="0.01" />
+  
+  <xacro:property name="femur_n1_iz" value="-0.01" />
+  <xacro:property name="femur_n1_length" value="0.06" />
+  <xacro:property name="femur_n1_radius" value="0.03" />
+
+  <xacro:property name="femur_n2_ix" value="0.18" />
+  <xacro:property name="femur_n2_iz" value="-0.005" />
+  <xacro:property name="femur_n2_length" value="0.05" />
+  <xacro:property name="femur_n2_radius" value="0.03" />
+
+  <link name="RF_thigh">
+    <inertial>
+      <mass value="0.2"/> 
+      <origin rpy="0 0 0" xyz="0.098 0.0 -0.015"/>
+      <inertia ixx="0.0000904183" ixy="-1.20401e-08" ixz="0.000000264487"  iyy="0.0015249" iyz="-0.0000198213" izz="0.00155644"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 ${femur_n1_iz}"/>
+      <geometry>
+        <cylinder length="${femur_n1_length}" radius="${femur_n1_radius}"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0.0 1.5708 0.0" xyz="${femur_ix} 0 0"/>
+      <geometry>
+        <cylinder length="${femur_length}" radius="${femur_radius}"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="${femur_n2_ix} 0 ${femur_n2_iz}"/>
+      <geometry>
+        <cylinder length="${femur_n2_length}" radius="${femur_n2_radius}"/>
+      </geometry>
+    </collision>
+    <visual name="RF_thigh_visual">
+      <origin rpy="-1.5708 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/fr_femur.STL" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="1.0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="LF_thigh">
+    <inertial>
+      <mass value="0.2"/> 
+      <origin rpy="0 0 0" xyz="0.098 -0.0 -0.015"/>
+      <inertia ixx="0.0000904183" ixy="1.20401e-08" ixz="0.000000264487"  iyy="0.0015249" iyz="0.0000198213" izz="0.00155644"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 ${femur_n1_iz}"/>
+      <geometry>
+        <cylinder length="${femur_n1_length}" radius="${femur_n1_radius}"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0.0 1.5708 0.0" xyz="${femur_ix} 0 0"/>
+      <geometry>
+        <cylinder length="${femur_length}" radius="${femur_radius}"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="${femur_n2_ix} 0 ${femur_n2_iz}"/>
+      <geometry>
+        <cylinder length="${femur_n2_length}" radius="${femur_n2_radius}"/>
+      </geometry>
+    </collision>
+    <visual name="LF_thigh_visual">
+      <origin rpy="0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/bl_femur.STL" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="1.0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="LH_thigh">
+    <inertial>
+      <mass value="0.2"/> 
+      <origin rpy="0 0 0" xyz="0.098 -0.0 -0.015"/>
+      <inertia ixx="0.0000904183" ixy="1.20401e-08" ixz="0.000000264487"  iyy="0.0015249" iyz="0.0000198213" izz="0.00155644"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 ${femur_n1_iz}"/>
+      <geometry>
+        <cylinder length="${femur_n1_length}" radius="${femur_n1_radius}"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0.0 1.5708 0.0" xyz="${femur_ix} 0 0"/>
+      <geometry>
+        <cylinder length="${femur_length}" radius="${femur_radius}"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="${femur_n2_ix} 0 ${femur_n2_iz}"/>
+      <geometry>
+        <cylinder length="${femur_n2_length}" radius="${femur_n2_radius}"/>
+      </geometry>
+    </collision>
+    <visual name="LH_thigh_visual">
+      <origin rpy="0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/bl_femur.STL" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="1.0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="RH_thigh">
+    <inertial>
+      <mass value="0.2"/> 
+      <origin rpy="0 0 0" xyz="0.098 0.0 -0.015"/>
+      <inertia ixx="0.0000904183" ixy="-1.20401e-08" ixz="0.000000264487"  iyy="0.0015249" iyz="-0.0000198213" izz="0.00155644"/>
+    </inertial>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="0 0 ${femur_n1_iz}"/>
+      <geometry>
+        <cylinder length="${femur_n1_length}" radius="${femur_n1_radius}"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0.0 1.5708 0.0" xyz="${femur_ix} 0 0"/>
+      <geometry>
+        <cylinder length="${femur_length}" radius="${femur_radius}"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin rpy="0.0 0.0 0.0" xyz="${femur_n2_ix} 0 ${femur_n2_iz}"/>
+      <geometry>
+        <cylinder length="${femur_n2_length}" radius="${femur_n2_radius}"/>
+      </geometry>
+    </collision>
+    <visual name="RH_thigh_visual">
+      <origin rpy="-1.5708 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/fr_femur.STL" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="1.0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <gazebo reference="RF_thigh">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <self_collide>0</self_collide>
+    <material>Gazebo/DarkGrey</material>
+    <kp value="1000000.0"/>
+    <kd value="100.0"/>
+  </gazebo>
+  <gazebo reference="LF_thigh">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <self_collide>0</self_collide>
+    <material>Gazebo/DarkGrey</material>
+    <kp value="1000000.0"/>
+    <kd value="100.0"/>
+  </gazebo>
+  <gazebo reference="LH_thigh">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <self_collide>0</self_collide>
+    <material>Gazebo/DarkGrey</material>
+    <kp value="1000000.0"/>
+    <kd value="100.0"/>
+  </gazebo>
+  <gazebo reference="RH_thigh">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+    <self_collide>0</self_collide>
+    <material>Gazebo/DarkGrey</material>
+    <kp value="1000000.0"/>
+    <kd value="100.0"/>
+  </gazebo>
+
+  <xacro:property name="tibia_ix" value="0.16" />
+  <xacro:property name="tibia_length" value="0.32" />
+  <xacro:property name="tibia_radius" value="0.01" />
+
+  <link name="RF_calf">
+    <inertial>
+      <mass value="0.05"/>
+      <origin rpy="0 0 0" xyz="0.105 0.0 0"/>
+      <inertia ixx="9.48861e-06" ixy="-1.60261e-09" ixz="-1.51986e-05" iyy="0.000910823" iyz="5.37151e-08" izz="0.000917045"/>
+    </inertial>
+    <collision>
+      <origin rpy="0.0 1.5708 0.0" xyz="${tibia_ix} 0 0"/>
+      <geometry>
+        <cylinder length="${tibia_length}" radius="${tibia_radius}"/>
+      </geometry>
+    </collision>
+    <visual name="RF_calf_visual">
+      <origin rpy="0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/fr_tibia.STL" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.298 0.298 0.298 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="LF_calf">
+    <inertial>
+      <mass value="0.05"/>
+      <origin rpy="0 0 0" xyz="0.105 0.0 0"/>
+      <inertia ixx="9.48861e-06" ixy="-1.60261e-09" ixz="-1.51986e-05" iyy="0.000910823" iyz="5.37151e-08" izz="0.000917045"/>
+    </inertial>
+    <collision>
+      <origin rpy="0.0 1.5708 0.0" xyz="${tibia_ix} 0 0"/>
+      <geometry>
+        <cylinder length="${tibia_length}" radius="${tibia_radius}"/>
+      </geometry>
+    </collision>
+    <visual name="LF_calf_visual">
+      <origin rpy="0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/fr_tibia.STL" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.298 0.298 0.298 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="LH_calf">
+    <inertial>
+      <mass value="0.05"/>
+      <origin rpy="0 0 0" xyz="0.105 0.0 0"/>
+      <inertia ixx="9.48861e-06" ixy="-1.60261e-09" ixz="-1.51986e-05" iyy="0.000910823" iyz="5.37151e-08" izz="0.000917045"/>
+    </inertial>
+    <collision>
+      <origin rpy="0.0 1.5708 0.0" xyz="${tibia_ix} 0 0"/>
+      <geometry>
+        <cylinder length="${tibia_length}" radius="${tibia_radius}"/>
+      </geometry>
+    </collision>
+    <visual name="LH_calf_visual">
+      <origin rpy="0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/fr_tibia.STL" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.298 0.298 0.298 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="RH_calf">
+    <inertial>
+      <mass value="0.05"/>
+      <origin rpy="0 0 0" xyz="0.105 0.0 0"/>
+      <inertia ixx="9.48861e-06" ixy="-1.60261e-09" ixz="-1.51986e-05" iyy="0.000910823" iyz="5.37151e-08" izz="0.000917045"/>
+    </inertial>
+    <collision>
+      <origin rpy="0.0 1.5708 0.0" xyz="${tibia_ix} 0 0"/>
+      <geometry>
+        <cylinder length="${tibia_length}" radius="${tibia_radius}"/>
+      </geometry>
+    </collision>
+    <visual name="RH_calf_visual">
+      <origin rpy="0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/fr_tibia.STL" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.298 0.298 0.298 1.0"/>
+      </material>
+    </visual>
+  </link>
+  
+  <gazebo reference="RF_calf">
+    <mu1>0.6</mu1>
+    <mu2>0.6</mu2>
+    <self_collide>1</self_collide>
+  </gazebo>
+  <gazebo reference="LF_calf">
+    <mu1>0.6</mu1>
+    <mu2>0.6</mu2>
+    <self_collide>1</self_collide>
+  </gazebo>
+  <gazebo reference="LH_calf">
+    <mu1>0.6</mu1>
+    <mu2>0.6</mu2>
+    <self_collide>1</self_collide>
+  </gazebo>
+  <gazebo reference="RH_calf">
+    <mu1>0.6</mu1>
+    <mu2>0.6</mu2>
+    <self_collide>1</self_collide>
+  </gazebo>
+  
+  <!--REAL FOOT SECTION 2/3 (COMMENT THIS IN, COMMENT BELOW OUT)-->
+  
+  <xacro:property name="foot_ix" value="0.01" />
+  <xacro:property name="foot_length" value="0.16" />
+  <xacro:property name="foot_radius" value="0.01" />
+   
+  <xacro:property name="foot_sphere_ix" value="0.12" />
+  <xacro:property name="foot_sphere_radius" value="0.02" />
+  
+  <link name="RF_fut">
+    <inertial>
+      <mass value="0.05"/> 
+      <origin rpy="0.0 0.0 0.0" xyz="0.054 -0.0 0.0"/>
+      <inertia ixx="6.8332e-06" ixy="-1.50915e-09" ixz="3.22287e-09" iyy="0.000251472" iyz="-3.20327e-09" izz="0.000250429"/>
+    </inertial>
+    <collision>
+      <origin rpy="0.0 1.5708 0.0" xyz="${foot_ix} 0 0"/>
+      <geometry>
+        <cylinder length="${foot_length}" radius="${foot_radius}"/>
+      </geometry>
+    </collision>
+    <visual name="RF_fut_visual">
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/fr_foot.STL" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.251 0.251 0.251 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="LF_fut">
+    <inertial>
+      <mass value="0.05"/> 
+      <origin rpy="0.0 0.0 0.0" xyz="0.054 -0.0 0.0"/>
+      <inertia ixx="6.8332e-06" ixy="-1.50915e-09" ixz="3.22287e-09" iyy="0.000251472" iyz="-3.20327e-09" izz="0.000250429"/>
+    </inertial>
+    <collision>
+      <origin rpy="0.0 1.5708 0.0" xyz="${foot_ix} 0 0"/>
+      <geometry>
+        <cylinder length="${foot_length}" radius="${foot_radius}"/>
+      </geometry>
+    </collision>
+    <visual name="LF_fut_visual">
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/fr_foot.STL" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.298 0.298 0.298 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="LH_fut">
+    <inertial>
+      <mass value="0.05"/> 
+      <origin rpy="0.0 0.0 0.0" xyz="0.054 -0.0 0.0"/>
+      <inertia ixx="6.8332e-06" ixy="-1.50915e-09" ixz="3.22287e-09" iyy="0.000251472" iyz="-3.20327e-09" izz="0.000250429"/>
+    </inertial>
+    <collision>
+      <origin rpy="0.0 1.5708 0.0" xyz="${foot_ix} 0 0"/>
+      <geometry>
+        <cylinder length="${foot_length}" radius="${foot_radius}"/>
+      </geometry>
+    </collision>
+    <visual name="LH_fut_visual">
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/fr_foot.STL" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.298 0.298 0.298 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="RH_fut">
+    <inertial>
+      <mass value="0.05"/> 
+      <origin rpy="0.0 0.0 0.0" xyz="0.054 -0.0 0.0"/>
+      <inertia ixx="6.8332e-06" ixy="-1.50915e-09" ixz="3.22287e-09" iyy="0.000251472" iyz="-3.20327e-09" izz="0.000250429"/>
+    </inertial>
+    <collision>
+      <origin rpy="0.0 1.5708 0.0" xyz="${foot_ix} 0 0"/>
+      <geometry>
+        <cylinder length="${foot_length}" radius="${foot_radius}"/>
+      </geometry>
+    </collision>
+    <visual name="RH_fut_visual">
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/fr_foot.STL" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.298 0.298 0.298 1.0"/>
+      </material>
+    </visual>
+  </link>
+  
+  <gazebo reference="RF_fut">
+    <mu1>0.6</mu1>
+    <mu2>0.6</mu2>
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+  <gazebo reference="LF_fut">
+    <mu1>0.6</mu1>
+    <mu2>0.6</mu2>
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+  <gazebo reference="LH_fut">
+    <mu1>0.6</mu1>
+    <mu2>0.6</mu2>
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+  <gazebo reference="RH_fut">
+    <mu1>0.6</mu1>
+    <mu2>0.6</mu2>
+    <material>Gazebo/DarkGrey</material>
+  </gazebo>
+
+  <link name="RF_FOOT">
+    <inertial>
+      <mass value="0.06"/>
+      <inertia ixx="9.600000000000001e-06" ixy="0.0" ixz="0.0" iyy="9.600000000000001e-06" iyz="0.0" izz="9.600000000000001e-06"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="${foot_sphere_ix} 0 0"/>
+      <geometry>
+        <sphere radius="${foot_sphere_radius}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="LF_FOOT">
+    <inertial>
+      <mass value="0.06"/>
+      <inertia ixx="9.600000000000001e-06" ixy="0.0" ixz="0.0" iyy="9.600000000000001e-06" iyz="0.0" izz="9.600000000000001e-06"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="${foot_sphere_ix} 0 0"/>
+      <geometry>
+        <sphere radius="${foot_sphere_radius}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="LH_FOOT">
+    <inertial>
+      <mass value="0.06"/>
+      <inertia ixx="9.600000000000001e-06" ixy="0.0" ixz="0.0" iyy="9.600000000000001e-06" iyz="0.0" izz="9.600000000000001e-06"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="${foot_sphere_ix} 0 0"/>
+      <geometry>
+        <sphere radius="${foot_sphere_radius}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="RH_FOOT">
+    <inertial>
+      <mass value="0.06"/>
+      <inertia ixx="9.600000000000001e-06" ixy="0.0" ixz="0.0" iyy="9.600000000000001e-06" iyz="0.0" izz="9.600000000000001e-06"/>
+    </inertial>
+    <collision>
+      <origin rpy="0 0 0" xyz="${foot_sphere_ix} 0 0"/>
+      <geometry>
+        <sphere radius="${foot_sphere_radius}"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <gazebo reference="RF_FOOT">
+    <mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <self_collide>1</self_collide>
+    <material>Gazebo/DarkGrey</material>
+    <kp value="1000000.0"/>
+    <kd value="100.0"/>
+  </gazebo>
+  <gazebo reference="LF_FOOT">
+    <mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <self_collide>1</self_collide>
+    <material>Gazebo/DarkGrey</material>
+    <kp value="1000000.0"/>
+    <kd value="100.0"/>
+  </gazebo>
+  <gazebo reference="LH_FOOT">
+    <mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <self_collide>1</self_collide>
+    <material>Gazebo/DarkGrey</material>
+    <kp value="1000000.0"/>
+    <kd value="100.0"/>
+  </gazebo>
+  <gazebo reference="RH_FOOT">
+    <mu1>0.9</mu1>
+    <mu2>0.9</mu2>
+    <self_collide>1</self_collide>
+    <material>Gazebo/DarkGrey</material>
+    <kp value="1000000.0"/>
+    <kd value="100.0"/>
+  </gazebo>
+  
+  <!--CONTROL ROD SECTION 1/2-->
+  <!-- fr_control_rod Joint (mimics RF_KFE) -->
+    <joint name="fr_control_rod" type="revolute">
+    <parent link="RF_thigh"/>
+    <child link="fr_fibula"/>
+    <origin rpy="0 0.0 ${r_knee_ipos}" xyz="0.12 0.0 -0.0431"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <mimic joint="RF_KFE" multiplier="1"/>
+    <dynamics damping="${free_joint_damping}" friction="${free_joint_sfriction}"/>
+    <limit effort="${efflim}" lower="${r_knee_lowlim}" upper="${r_knee_uplim}" velocity="8.7267"/>
+    </joint>
+
+    <!-- fl_control_rod Joint (mimics LF_KFE) -->
+    <joint name="fl_control_rod" type="revolute">
+    <parent link="LF_thigh"/>
+    <child link="fl_fibula"/>
+    <origin rpy="0 0.0 ${l_knee_ipos}" xyz="0.12 0.0 -0.0431"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <mimic joint="LF_KFE" multiplier="1"/>
+    <dynamics damping="${free_joint_damping}" friction="${free_joint_sfriction}"/>
+    <limit effort="${efflim}" lower="${l_knee_lowlim}" upper="${l_knee_uplim}" velocity="8.7267"/>
+    </joint>
+
+    <!-- bl_control_rod Joint (mimics LH_KFE) -->
+    <joint name="bl_control_rod" type="revolute">
+    <parent link="LH_thigh"/>
+    <child link="bl_fibula"/>
+    <origin rpy="0 0.0 ${l_knee_ipos}" xyz="0.12 0.0 -0.0431"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <mimic joint="LH_KFE" multiplier="1"/>
+    <dynamics damping="${free_joint_damping}" friction="${free_joint_sfriction}"/>
+    <limit effort="${efflim}" lower="${l_knee_lowlim}" upper="${l_knee_uplim}" velocity="8.7267"/>
+    </joint>
+
+    <!-- br_control_rod Joint (mimics RH_KFE) -->
+    <joint name="br_control_rod" type="revolute">
+    <parent link="RH_thigh"/>
+    <child link="br_fibula"/>
+    <origin rpy="0 0.0 ${r_knee_ipos}" xyz="0.12 0.0 -0.0431"/>
+    <axis xyz="0.0 0.0 1.0"/>
+    <mimic joint="RH_KFE" multiplier="1"/>
+    <dynamics damping="${free_joint_damping}" friction="${free_joint_sfriction}"/>
+    <limit effort="${efflim}" lower="${r_knee_lowlim}" upper="${r_knee_uplim}" velocity="8.7267"/>
+    </joint>
+
+
+  <xacro:property name="fibula_ix" value="0.14" />
+  <xacro:property name="fibula_length" value="0.24" />
+  <xacro:property name="fibula_radius" value="0.01" />
+
+  <link name="fr_fibula">
+    <inertial>
+      <mass value="0.020"/> 
+      <origin rpy="0.0 0.0 0.0" xyz="0.173 -0.0 -0.000"/>
+      <inertia ixx="8.92564e-07" ixy="-6.08931e-13" ixz="-4.52477e-07" iyy="0.000405016" iyz="-1.2126e-09" izz="0.000405428"/>
+    </inertial>
+    <collision>
+      <origin rpy="0.0 1.5708 0.0" xyz="${fibula_ix} 0 0"/>
+      <geometry>
+        <cylinder length="${fibula_length}" radius="${fibula_radius}"/>
+      </geometry>
+    </collision>
+    <visual name="fr_fibula_visual">
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/fr_fibula.STL" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.298 0.298 0.298 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="fl_fibula">
+    <inertial>
+      <mass value="0.020"/> 
+      <origin rpy="0.0 0.0 0.0" xyz="0.173 -0.0 -0.000"/>
+      <inertia ixx="8.92564e-07" ixy="-6.08931e-13" ixz="-4.52477e-07" iyy="0.000405016" iyz="-1.2126e-09" izz="0.000405428"/>
+    </inertial>
+    <collision>
+      <origin rpy="0.0 1.5708 0.0" xyz="${fibula_ix} 0 0"/>
+      <geometry>
+        <cylinder length="${fibula_length}" radius="${fibula_radius}"/>
+      </geometry>
+    </collision>
+    <visual name="fl_fibula_visual">
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/fr_fibula.STL" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.298 0.298 0.298 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="bl_fibula">
+    <inertial>
+      <mass value="0.020"/> 
+      <origin rpy="0.0 0.0 0.0" xyz="0.173 -0.0 -0.000"/>
+      <inertia ixx="8.92564e-07" ixy="-6.08931e-13" ixz="-4.52477e-07" iyy="0.000405016" iyz="-1.2126e-09" izz="0.000405428"/>
+    </inertial>
+    <collision>
+      <origin rpy="0.0 1.5708 0.0" xyz="${fibula_ix} 0 0"/>
+      <geometry>
+        <cylinder length="${fibula_length}" radius="${fibula_radius}"/>
+      </geometry>
+    </collision>
+    <visual name="bl_fibula_visual">
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/fr_fibula.STL" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.298 0.298 0.298 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="br_fibula">
+    <inertial>
+      <mass value="0.020"/> 
+      <origin rpy="0.0 0.0 0.0" xyz="0.173 -0.0 -0.000"/>
+      <inertia ixx="8.92564e-07" ixy="-6.08931e-13" ixz="-4.52477e-07" iyy="0.000405016" iyz="-1.2126e-09" izz="0.000405428"/>
+    </inertial>
+    <collision>
+      <origin rpy="0.0 1.5708 0.0" xyz="${fibula_ix} 0 0"/>
+      <geometry>
+        <cylinder length="${fibula_length}" radius="${fibula_radius}"/>
+      </geometry>
+    </collision>
+    <visual name="br_fibula_visual">
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://husky_description/meshes/fr_fibula.STL" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="0.298 0.298 0.298 1.0"/>
+      </material>
+    </visual>
+  </link>
+  
+  <ros2_control name="GazeboSystem" type="system">
+    <hardware>
+        <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+    </hardware>
+
+    <!-- 12 Actuated Joints (Effort-Controlled) -->
+    <joint name="RF_HAA">
+        <command_interface name="effort"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="RF_HFE">
+        <command_interface name="effort"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+    </joint>
+    <joint name="RF_KFE">
+        <command_interface name="effort"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="LF_HAA">
+        <command_interface name="effort"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+    </joint>
+    <joint name="LF_HFE">
+        <command_interface name="effort"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+    </joint>
+    <joint name="LF_KFE">
+        <command_interface name="effort"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="RH_HAA">
+        <command_interface name="effort"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+    </joint>
+    <joint name="RH_HFE">
+        <command_interface name="effort"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+    </joint>
+    <joint name="RH_KFE">
+        <command_interface name="effort"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="LH_HAA">
+        <command_interface name="effort"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+    </joint>
+    <joint name="LH_HFE">
+        <command_interface name="effort"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+    </joint>
+    <joint name="LH_KFE">
+        <command_interface name="effort"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+    </joint>
+
+        <!-- 🪞 Mimic Joints (State-Only) -->
+
+    <!-- Ankles mimic KFE joints -->
+    <joint name="LF_ankle">
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+    </joint>
+    <joint name="LH_ankle">
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+    </joint>
+    <joint name="RH_ankle">
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+    </joint>
+
+    <!-- Control Rods mimic KFE joints -->
+    <joint name="fr_control_rod">
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+    </joint>
+    <joint name="fl_control_rod">
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+    </joint>
+    <joint name="br_control_rod">
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+    </joint>
+    <joint name="bl_control_rod">
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+    </joint>
+
+
+
+</ros2_control>
 </robot>
