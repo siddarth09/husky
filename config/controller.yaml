@@ -2,26 +2,48 @@ controller_manager:
   ros__parameters:
     update_rate: 1000
 
+    effort_controller:
+      type: effort_controllers/JointGroupEffortController
+    
+    # position_controller:
+    #   type: position_controllers/JointGroupPositionController
+
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-    effort_controller:
-      type: effort_controllers/JointGroupEffortController
-      joints:
-        - RF_HAA
-        - RF_HFE
-        - RF_KFE
-        - LF_HAA
-        - LF_HFE
-        - LF_KFE
-        - RH_HAA
-        - RH_HFE
-        - RH_KFE
-        - LH_HAA
-        - LH_HFE
-        - LH_KFE
-      command_interfaces:
-        - effort
-      state_interfaces:
-        -position
-        -velocity
+effort_controller:
+  ros__parameters:
+    joints:
+      - RF_HAA
+      - RF_HFE
+      - RF_KFE
+      - LF_HAA
+      - LF_HFE
+      - LF_KFE
+      - RH_HAA
+      - RH_HFE
+      - RH_KFE
+      - LH_HAA
+      - LH_HFE
+      - LH_KFE
+    command_interfaces:
+      -effort
+
+position_controller:
+  ros__parameters:
+    joints:
+      - RF_HAA
+      - LF_HAA
+      - LH_HAA
+      - RH_HAA
+      - RF_HFE
+      - LF_HFE
+      - LH_HFE
+      - RH_HFE
+      - RF_KFE    
+      - LF_KFE
+      - RH_KFE
+      - LH_KFE
+
+    command_interfaces:
+      -position
