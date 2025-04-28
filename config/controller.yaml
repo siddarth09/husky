@@ -1,17 +1,12 @@
 controller_manager:
   ros__parameters:
-    update_rate: 1000
-
-    effort_controller:
-      type: effort_controllers/JointGroupEffortController
-    
-    # position_controller:
-    #   type: position_controllers/JointGroupPositionController
-
     joint_state_broadcaster:
-      type: joint_state_broadcaster/JointStateBroadcaster
+      type: "joint_state_broadcaster/JointStateBroadcaster"
 
-effort_controller:
+    joint_trajectory_controller:
+      type: "joint_trajectory_controller/JointTrajectoryController"
+
+joint_trajectory_controller:
   ros__parameters:
     joints:
       - RF_HAA
@@ -26,24 +21,60 @@ effort_controller:
       - LH_HAA
       - LH_HFE
       - LH_KFE
-    command_interfaces:
-      -effort
-
-position_controller:
-  ros__parameters:
-    joints:
-      - RF_HAA
-      - LF_HAA
-      - LH_HAA
-      - RH_HAA
-      - RF_HFE
-      - LF_HFE
-      - LH_HFE
-      - RH_HFE
-      - RF_KFE    
-      - LF_KFE
-      - RH_KFE
-      - LH_KFE
 
     command_interfaces:
-      -position
+      - effort
+
+    state_interfaces:
+      - position
+      - velocity
+
+    gains:
+      RF_HAA:
+        p: 200.0
+        i: 0.1
+        d: 50.0
+      RF_HFE:
+        p: 150.0
+        i: 0.1
+        d: 25.0
+      RF_KFE:
+        p: 100.0
+        i: 0.1
+        d: 10.0
+      LF_HAA:
+        p: 200.0
+        i: 0.1
+        d: 50.0
+      LF_HFE:
+        p: 150.0
+        i: 0.1
+        d: 25.0
+      LF_KFE:
+        p: 100.0
+        i: 0.1
+        d: 10.0
+      RH_HAA:
+        p: 200.0
+        i: 0.1
+        d: 50.0
+      RH_HFE:
+        p: 150.0
+        i: 0.1
+        d: 25.0
+      RH_KFE:
+        p: 100.0
+        i: 0.1
+        d: 10.0
+      LH_HAA:
+        p: 200.0
+        i: 0.1
+        d: 50.0
+      LH_HFE:
+        p: 150.0
+        i: 0.1
+        d: 25.0
+      LH_KFE:
+        p: 100.0
+        i: 0.1
+        d: 10.0

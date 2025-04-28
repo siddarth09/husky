@@ -888,7 +888,12 @@
       </contact>
       <always_on>true</always_on>
       <update_rate>100.0</update_rate>
-      <topic>/rf_foot/contacts</topic>
+      <plugin name="gazebo_ros_contact_rf" filename="gz_ros2_contact_sensor_system">
+        <ros>
+          <namespace>/rf_foot</namespace>
+          <remapping>~/contacts:=contacts</remapping>
+        </ros>
+      </plugin>
     </sensor>
   </link>
 
@@ -913,7 +918,12 @@
       </contact>
       <always_on>true</always_on>
       <update_rate>100.0</update_rate>
-      <topic>/lf_foot/contacts</topic>
+      <plugin name="gazebo_ros_contact_lf" filename="gz_ros2_contact_sensor_system">
+        <ros>
+          <namespace>/lf_foot</namespace>
+          <remapping>~/contacts:=contacts</remapping>
+        </ros>
+      </plugin>
     </sensor>
   </link>
 
@@ -938,7 +948,12 @@
       </contact>
       <always_on>true</always_on>
       <update_rate>100.0</update_rate>
-      <topic>/lh_foot/contacts</topic>
+      <plugin name="gazebo_ros_contact_lh" filename="gz_ros2_contact_sensor_system">
+        <ros>
+          <namespace>/lh_foot</namespace>
+          <remapping>~/contacts:=contacts</remapping>
+        </ros>
+      </plugin>
     </sensor>
   </link>
 
@@ -958,13 +973,19 @@
     
 
     </visual>
+    
     <sensor name="rh_foot_contact_sensor" type="contact">
       <contact>
         <collision>RH_FOOT_collision</collision>
       </contact>
       <always_on>true</always_on>
       <update_rate>100.0</update_rate>
-      <topic>/rh_foot/contacts</topic>
+      <plugin name="gazebo_ros_contact_rh" filename="gz_ros2_contact_sensor_system">
+        <ros>
+          <namespace>/rh_foot</namespace>
+          <remapping>~/contacts:=contacts</remapping>
+        </ros>
+      </plugin>
     </sensor>
   </link>
 
@@ -1288,140 +1309,119 @@
 
   
   <ros2_control name="GazeboSystem" type="system">
-      <hardware>
-        <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+  <hardware>
+    <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+    <param name="command_interface">position</param>
 
-        <!-- 🔧 Force joint interfaces to be POSITION -->
-        <param name="command_interface">position</param>
-      </hardware>
+    <param name="command_interface">effort</param>
+    <param name="update_rate">1000</param> 
+  </hardware>
 
+  <!-- 12 Actuated Joints -->
+  <joint name="RF_HAA">
+    <command_interface name="effort"/>
+    <command_interface name="position"/>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+  <joint name="RF_HFE">
+    <command_interface name="effort"/>
+    <command_interface name="position"/>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+  <joint name="RF_KFE">
+    <command_interface name="effort"/>
+    <command_interface name="position"/>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+  <joint name="LF_HAA">
+    <command_interface name="effort"/>
+    <command_interface name="position"/>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+  <joint name="LF_HFE">
+    <command_interface name="effort"/>
+    <command_interface name="position"/>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+  <joint name="LF_KFE">
+    <command_interface name="effort"/>
+    <command_interface name="position"/>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+  <joint name="RH_HAA">
+    <command_interface name="effort"/>
+    <command_interface name="position"/>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+  <joint name="RH_HFE">
+    <command_interface name="effort"/>
+    <command_interface name="position"/>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+  <joint name="RH_KFE">
+    <command_interface name="effort"/>
+    <command_interface name="position"/>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+  <joint name="LH_HAA">
+    <command_interface name="effort"/>
+    <command_interface name="position"/>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+  <joint name="LH_HFE">
+    <command_interface name="effort"/>
+    <command_interface name="position"/>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+  <joint name="LH_KFE">
+    <command_interface name="effort"/>
+    <command_interface name="position"/>
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
 
-      <!-- 12 Actuated Joints (Effort-Controlled) -->
-      <joint name="RF_HAA">
-          
-          <command_interface name="effort"/>
-          <state_interface name="position"/>
-          <state_interface name="velocity"/>
-          <param name="command_interface">position</param> 
-      </joint>
+  <!-- Mimic joints (only state interfaces) -->
+  <joint name="LF_ankle">
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+  <joint name="LH_ankle">
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+  <joint name="RH_ankle">
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+  <joint name="fr_control_rod">
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+  <joint name="fl_control_rod">
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+  <joint name="br_control_rod">
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+  <joint name="bl_control_rod">
+    <state_interface name="position"/>
+    <state_interface name="velocity"/>
+  </joint>
+</ros2_control>
 
-      <joint name="RF_HFE">
-          
-          <command_interface name="effort"/>
-          <state_interface name="position"/>
-          <state_interface name="velocity"/>
-          <param name="command_interface">position</param> 
-      </joint>
-      <joint name="RF_KFE">
-          
-          <command_interface name="effort"/>
-          <state_interface name="position"/>
-          <state_interface name="velocity"/>
-          <param name="command_interface">position</param> 
-      </joint>
-
-      <joint name="LF_HAA">
-          
-          <command_interface name="effort"/>
-          <state_interface name="position"/>
-          <state_interface name="velocity"/>
-          <param name="command_interface">position</param> 
-      </joint>
-      <joint name="LF_HFE">
-          
-          <command_interface name="effort"/>
-          <state_interface name="position"/>
-          <state_interface name="velocity"/>
-          <param name="command_interface">position</param> 
-      </joint>
-      <joint name="LF_KFE">
-          
-          <command_interface name="effort"/>
-          <state_interface name="position"/>
-          <state_interface name="velocity"/>
-          <param name="command_interface">position</param> 
-      </joint>
-
-      <joint name="RH_HAA">
-          
-          <command_interface name="effort"/>
-          <state_interface name="position"/>
-          <state_interface name="velocity"/>
-          <param name="command_interface">position</param> 
-      </joint>
-      <joint name="RH_HFE">
-          
-          <command_interface name="effort"/>
-          <state_interface name="position"/>
-          <state_interface name="velocity"/>
-          <param name="command_interface">position</param> 
-      </joint>
-      <joint name="RH_KFE">
-          
-          <command_interface name="effort"/>
-          <state_interface name="position"/>
-          <state_interface name="velocity"/>
-          <param name="command_interface">position</param> 
-      </joint>
-
-      <joint name="LH_HAA">
-          
-          <command_interface name="effort"/>
-          <state_interface name="position"/>
-          <state_interface name="velocity"/>
-          <param name="command_interface">position</param> 
-      </joint>
-      <joint name="LH_HFE">
-          
-          <command_interface name="effort"/>
-          <state_interface name="position"/>
-          <state_interface name="velocity"/>
-          <param name="command_interface">position</param> 
-      </joint>
-      <joint name="LH_KFE">
-          
-          <command_interface name="effort"/>
-          <state_interface name="position"/>
-          <state_interface name="velocity"/>
-          
-      </joint>
-
-
-      <!-- Ankles mimic KFE joints -->
-      <joint name="LF_ankle">
-          <state_interface name="position"/>
-          <state_interface name="velocity"/>
-      </joint>
-      <joint name="LH_ankle">
-          <state_interface name="position"/>
-          <state_interface name="velocity"/>
-      </joint>
-      <joint name="RH_ankle">
-          <state_interface name="position"/>
-          <state_interface name="velocity"/>
-      </joint>
-
-      <!-- Control Rods mimic KFE joints -->
-      <joint name="fr_control_rod">
-          <state_interface name="position"/>
-          <state_interface name="velocity"/>
-      </joint>
-      <joint name="fl_control_rod">
-          <state_interface name="position"/>
-          <state_interface name="velocity"/>
-      </joint>
-      <joint name="br_control_rod">
-          <state_interface name="position"/>
-          <state_interface name="velocity"/>
-      </joint>
-      <joint name="bl_control_rod">
-          <state_interface name="position"/>
-          <state_interface name="velocity"/>
-      </joint>
-
-
-
-  </ros2_control>
 
 
   <joint type="fixed" name="camera_joint">
@@ -1472,7 +1472,7 @@
   <link name="camera_link_optical">
   </link>
 
-  <!-- STEP 8 - IMU -->
+
   <joint name="imu_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0" />
     <parent link="base"/>
