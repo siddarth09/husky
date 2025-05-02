@@ -1,0 +1,52 @@
+controller_manager:
+  ros__parameters:
+    use_sim_time: true
+    update_rate: 100  # Hz 
+
+    joint_trajectory_controller:
+      type: joint_trajectory_controller/JointTrajectoryController
+
+    joint_state_broadcaster:
+      type: "joint_state_broadcaster/JointStateBroadcaster"
+
+    position_controller:
+      type: "forward_command_controller/ForwardCommandController"
+
+joint_state_broadcaster:
+  ros__parameters:
+    joints:
+      - RF_HAA
+      - RF_HFE
+      - RF_KFE
+      - LF_HAA
+      - LF_HFE
+      - LF_KFE
+      - RH_HAA
+      - RH_HFE
+      - RH_KFE
+      - LH_HAA
+      - LH_HFE
+      - LH_KFE
+    interfaces:
+      - position
+      - velocity
+
+position_controller:
+  ros__parameters:
+    joints:
+      - RF_HAA
+      - RF_HFE
+      - RF_KFE
+      - LF_HAA
+      - LF_HFE
+      - LF_KFE
+      - RH_HAA
+      - RH_HFE
+      - RH_KFE
+      - LH_HAA
+      - LH_HFE
+      - LH_KFE
+
+    interface_name: position
+
+    
