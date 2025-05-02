@@ -1,0 +1,971 @@
+<sdf version='1.11'>
+  <model name='husky_description'>
+    <link name='base_link'>
+      <inertial>
+        <pose>0.014095697920941799 -0.00013817970138709401 -0.099250808579265201 0 0 0</pose>
+        <mass>3.1225618948582201</mass>
+        <inertia>
+          <ixx>0.012129472337601499</ixx>
+          <ixy>3.6611140225149002e-08</ixy>
+          <ixz>3.3992356576492802e-05</ixz>
+          <iyy>0.017721222196486499</iyy>
+          <iyz>-2.45541012870126e-08</iyz>
+          <izz>0.027028150851790399</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='base_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.941176474 0.941176474 0.941176474 1</diffuse>
+          <ambient>0.941176474 0.941176474 0.941176474 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='FL_H_F' type='revolute'>
+      <pose relative_to='base_link'>0.197786147802266 0.044869618438117299 -0.153554926347478 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>FL_Hip_Link</child>
+      <axis>
+        <xyz>-1 0 0</xyz>
+        <limit>
+          <lower>-0.436332</lower>
+          <upper>0.087266499999999997</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='FL_Hip_Link'>
+      <pose relative_to='FL_H_F'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.016658955338625499 -0.0029800236681498502 1.9041767634897501e-08 0 0 0</pose>
+        <mass>0.023862409804887699</mass>
+        <inertia>
+          <ixx>5.6796289944201501e-06</ixx>
+          <ixy>-1.6833791043456599e-07</ixy>
+          <ixz>1.8870373560611899e-12</ixz>
+          <iyy>1.0577366722644201e-05</iyy>
+          <iyz>1.69261090017549e-12</iyz>
+          <izz>8.0840792000366005e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='FL_Hip_Link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/FL_Hip_Link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='FL_Hip_Link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/FL_Hip_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.627451003 0.627451003 0.627451003 1</diffuse>
+          <ambient>0.627451003 0.627451003 0.627451003 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='FL_H_S' type='revolute'>
+      <pose relative_to='FL_Hip_Link'>0.028000000000000101 0 0 0 0 0</pose>
+      <parent>FL_Hip_Link</parent>
+      <child>FL_Thigh_Link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>0.436332</lower>
+          <upper>1.13446</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='FL_Thigh_Link'>
+      <pose relative_to='FL_H_S'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.078231376812477493 0.0340532240239729 -0.00080289014188603103 0 0 0</pose>
+        <mass>0.25809996866226698</mass>
+        <inertia>
+          <ixx>3.5261669619715898e-05</ixx>
+          <ixy>1.66838371626373e-09</ixy>
+          <ixz>2.3374263749380801e-08</ixz>
+          <iyy>7.6878947750579505e-05</iyy>
+          <iyz>2.46853006266231e-09</iyz>
+          <izz>5.3524833002854098e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='FL_Thigh_Link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/FL_Thigh_Link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='FL_Thigh_Link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/FL_Thigh_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.941176474 0.941176474 0.941176474 1</diffuse>
+          <ambient>0.941176474 0.941176474 0.941176474 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='FL_T_K' type='revolute'>
+      <pose relative_to='FL_Thigh_Link'>0.14949999551505999 0 0 0 0 0</pose>
+      <parent>FL_Thigh_Link</parent>
+      <child>FL_Tibia_Link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1.8675022999999999</lower>
+          <upper>-0.73303799999999997</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='FL_Tibia_Link'>
+      <pose relative_to='FL_T_K'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.10507582558749599 0.0046184998163700001 -0.067494193343492798 0 0 0</pose>
+        <mass>0.053931580655031799</mass>
+        <inertia>
+          <ixx>2.2028867057851102e-05</ixx>
+          <ixy>8.60228126288038e-07</ixy>
+          <ixz>-2.0492615590228599e-05</ixz>
+          <iyy>5.96884389491682e-05</iyy>
+          <iyz>5.5032804195163497e-07</iyz>
+          <izz>4.0760318327746998e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='FL_Tibia_Link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/FL_Tibia_Link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='FL_Tibia_Link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/FL_Tibia_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.941176474 0.941176474 0.941176474 1</diffuse>
+          <ambient>0.941176474 0.941176474 0.941176474 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='FL_T_A' type='revolute'>
+      <pose relative_to='FL_Tibia_Link'>-0.27174999999999999 -0.0044999999999999997 -0.17458000000000001 3.1415926535897931 0.95079265358979315 3.1415926535897931</pose>
+      <parent>FL_Tibia_Link</parent>
+      <child>FL_Foot_Link</child>
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <mimic joint='FL_T_K'>
+          <multiplier>-1</multiplier>
+          <offset>0</offset>
+          <reference>0</reference>
+        </mimic>
+        <limit>
+          <lower>-1.5709630000000001</lower>
+          <upper>1.5709630000000001</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='FL_Foot_Link'>
+      <pose relative_to='FL_T_A'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.049880325623696403 0.0134999946773079 -0.017223249189699499 0 0 0</pose>
+        <mass>0.071600618031931698</mass>
+        <inertia>
+          <ixx>1.38204596942264e-05</ixx>
+          <ixy>-9.0403957731399504e-12</ixy>
+          <ixz>1.18199758164081e-05</ixz>
+          <iyy>4.6545192319501601e-05</iyy>
+          <iyz>2.55245075610104e-12</iyz>
+          <izz>4.3971053319931698e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='FL_Foot_Link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/FL_Foot_Link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='FL_Foot_Link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/FL_Foot_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.941176474 0.941176474 0.941176474 1</diffuse>
+          <ambient>0.941176474 0.941176474 0.941176474 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='FR_H_F' type='revolute'>
+      <pose relative_to='base_link'>0.197786147802266 -0.045130381561881698 -0.153554926347478 -0.0075105634526252798 0 0</pose>
+      <parent>base_link</parent>
+      <child>FR_Hip_Link</child>
+      <axis>
+        <xyz>-1 0 0</xyz>
+        <limit>
+          <lower>-0.087266499999999997</lower>
+          <upper>0.436332</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='FR_Hip_Link'>
+      <pose relative_to='FR_H_F'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.0166589553386252 0.0029799397621260099 2.2362405214637602e-05 0 0 0</pose>
+        <mass>0.023862409804887501</mass>
+        <inertia>
+          <ixx>5.6796289944201001e-06</ixx>
+          <ixy>1.6833317677962001e-07</ixy>
+          <ixz>1.26241368803341e-09</ixz>
+          <iyy>1.0577226057097201e-05</iyy>
+          <iyz>1.8726982378247301e-08</iyz>
+          <izz>8.0842198655834092e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='FR_Hip_Link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/FR_Hip_Link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='FR_Hip_Link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/FR_Hip_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.627451003 0.627451003 0.627451003 1</diffuse>
+          <ambient>0.627451003 0.627451003 0.627451003 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='FR_H_S' type='revolute'>
+      <pose relative_to='FR_Hip_Link'>0.0279999999999999 0 0 0.0075105634526254697 0 0</pose>
+      <parent>FR_Hip_Link</parent>
+      <child>FR_Thigh_Link</child>
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <limit>
+          <lower>-1.13446</lower>
+          <upper>-0.436332</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='FR_Thigh_Link'>
+      <pose relative_to='FR_H_S'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.078231373657529996 -0.034053224007388097 0.00080321173844888295 0 0 0</pose>
+        <mass>0.25809996839827698</mass>
+        <inertia>
+          <ixx>3.5261669811340798e-05</ixx>
+          <ixy>-1.6684476857474899e-09</ixy>
+          <ixz>-2.34493663880667e-08</ixz>
+          <iyy>7.68789476455668e-05</iyy>
+          <iyz>2.4685637915835299e-09</iyz>
+          <izz>5.3524832700169503e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='FR_Thigh_Link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/FR_Thigh_Link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='FR_Thigh_Link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/FR_Thigh_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.941176474 0.941176474 0.941176474 1</diffuse>
+          <ambient>0.941176474 0.941176474 0.941176474 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='FR_T_K' type='revolute'>
+      <pose relative_to='FR_Thigh_Link'>0.14949999552038501 0 0 0 0 0</pose>
+      <parent>FR_Thigh_Link</parent>
+      <child>FR_Tibia_Link</child>
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <limit>
+          <lower>0.73303799999999997</lower>
+          <upper>1.8675022999999999</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='FR_Tibia_Link'>
+      <pose relative_to='FR_T_K'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.10506586638446699 -0.0046185608630878302 -0.067507081467450006 0 0 0</pose>
+        <mass>0.053931583057585303</mass>
+        <inertia>
+          <ixx>2.2027131103378199e-05</ixx>
+          <ixy>-8.5812824062614395e-07</ixy>
+          <ixz>-2.04918236600125e-05</ixz>
+          <iyy>5.9688434442097702e-05</iyy>
+          <iyz>-5.5359332965632901e-07</iyz>
+          <izz>4.0762047894105098e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='FR_Tibia_Link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/FR_Tibia_Link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='FR_Tibia_Link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/FR_Tibia_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.941176474 0.941176474 0.941176474 1</diffuse>
+          <ambient>0.941176474 0.941176474 0.941176474 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='FR_T_A' type='revolute'>
+      <pose relative_to='FR_Tibia_Link'>-0.27174999999999999 0.015102000000000001 -0.17399000000000001 0 -0.39999999999999997 0</pose>
+      <parent>FR_Tibia_Link</parent>
+      <child>FR_Foot_Link</child>
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <mimic joint='FR_T_K'>
+          <multiplier>-1</multiplier>
+          <offset>0</offset>
+          <reference>0</reference>
+        </mimic>
+        <limit>
+          <lower>-1.5709630000000001</lower>
+          <upper>1.5709630000000001</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='FR_Foot_Link'>
+      <pose relative_to='FR_T_A'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.049880624741783397 -0.024102027248039198 -0.017818592361113501 0 0 0</pose>
+        <mass>0.071600618032517604</mass>
+        <inertia>
+          <ixx>1.382005094306e-05</ixx>
+          <ixy>-9.0404282861524395e-12</ixy>
+          <ixz>1.18194544732016e-05</ixz>
+          <iyy>4.6545192319746102e-05</iyy>
+          <iyz>2.55234266488828e-12</iyz>
+          <izz>4.3971462071495801e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='FR_Foot_Link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/FR_Foot_Link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='FR_Foot_Link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/FR_Foot_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.941176474 0.941176474 0.941176474 1</diffuse>
+          <ambient>0.941176474 0.941176474 0.941176474 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='RL_H_F' type='revolute'>
+      <pose relative_to='base_link'>-0.197113852197734 0.044869618438115703 -0.15340492634747599 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>RL_Hip_Link</child>
+      <axis>
+        <xyz>-1 0 0</xyz>
+        <limit>
+          <lower>-0.436332</lower>
+          <upper>0.087266499999999997</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='RL_Hip_Link'>
+      <pose relative_to='RL_H_F'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.016658955338625301 -0.0029800236681498502 1.9041766163852e-08 0 0 0</pose>
+        <mass>0.023862409804887599</mass>
+        <inertia>
+          <ixx>5.6796289944201298e-06</ixx>
+          <ixy>-1.6833791043456999e-07</ixy>
+          <ixz>1.8870373832845399e-12</ixz>
+          <iyy>1.0577366722644101e-05</iyy>
+          <iyz>1.6926109009628101e-12</iyz>
+          <izz>8.08407920003657e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='RL_Hip_Link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/RL_Hip_Link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='RL_Hip_Link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/RL_Hip_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.627451003 0.627451003 0.627451003 1</diffuse>
+          <ambient>0.627451003 0.627451003 0.627451003 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='RL_H_S' type='revolute'>
+      <pose relative_to='RL_Hip_Link'>0.0279999999999999 0 0 0 0 0</pose>
+      <parent>RL_Hip_Link</parent>
+      <child>RL_Thigh_Link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>0.436332</lower>
+          <upper>1.13446</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='RL_Thigh_Link'>
+      <pose relative_to='RL_H_S'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.078231376973883396 0.034053224048694097 -0.00080289017905182903 0 0 0</pose>
+        <mass>0.25809996930099799</mass>
+        <inertia>
+          <ixx>3.5261669653293903e-05</ixx>
+          <ixy>1.6684319543492199e-09</ixy>
+          <ixz>2.3374277171291999e-08</ixz>
+          <iyy>7.6878948060472702e-05</iyy>
+          <iyz>2.46856867805387e-09</iyz>
+          <izz>5.3524833287727798e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='RL_Thigh_Link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/RL_Thigh_Link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='RL_Thigh_Link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/RL_Thigh_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.941176474 0.941176474 0.941176474 1</diffuse>
+          <ambient>0.941176474 0.941176474 0.941176474 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='RL_T_K' type='revolute'>
+      <pose relative_to='RL_Thigh_Link'>0.149499995515122 0 0 0 0 0</pose>
+      <parent>RL_Thigh_Link</parent>
+      <child>RL_Tibia_Link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1.8675022999999999</lower>
+          <upper>-0.73303799999999997</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='RL_Tibia_Link'>
+      <pose relative_to='RL_T_K'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.105075824411251 0.0046184997418280598 -0.067494192889534801 0 0 0</pose>
+        <mass>0.053931581238878097</mass>
+        <inertia>
+          <ixx>2.2028867265218601e-05</ixx>
+          <ixy>8.6022817355050605e-07</ixy>
+          <ixz>-2.0492615415609301e-05</ixz>
+          <iyy>5.96884392984058e-05</iyy>
+          <iyz>5.50327989730781e-07</iyz>
+          <izz>4.07603184971206e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='RL_Tibia_Link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/RL_Tibia_Link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='RL_Tibia_Link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/RL_Tibia_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.941176474 0.941176474 0.941176474 1</diffuse>
+          <ambient>0.941176474 0.941176474 0.941176474 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='RL_T_A' type='revolute'>
+      <pose relative_to='RL_Tibia_Link'>-0.27174999999999999 -0.0074999999999999997 -0.17458000000000001 3.1415926535897931 0.95079265358979315 3.1415926535897931</pose>
+      <parent>RL_Tibia_Link</parent>
+      <child>RL_Foot_Link</child>
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <mimic joint='RL_T_K'>
+          <multiplier>-1</multiplier>
+          <offset>0</offset>
+          <reference>0</reference>
+        </mimic>
+        <limit>
+          <lower>-1.5709630000000001</lower>
+          <upper>1.5709630000000001</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='RL_Foot_Link'>
+      <pose relative_to='RL_T_A'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.049880325623617799 0.013499994677383199 -0.017223249191769801 0 0 0</pose>
+        <mass>0.071600618031931795</mass>
+        <inertia>
+          <ixx>1.38204596942734e-05</ixx>
+          <ixy>-9.0403957584834796e-12</ixy>
+          <ixz>1.1819975816468001e-05</ixz>
+          <iyy>4.6545192319501703e-05</iyy>
+          <iyz>2.5524507547662798e-12</iyz>
+          <izz>4.3971053319884799e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='RL_Foot_Link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/RL_Foot_Link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='RL_Foot_Link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/RL_Foot_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.941176474 0.941176474 0.941176474 1</diffuse>
+          <ambient>0.941176474 0.941176474 0.941176474 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='RR_H_F' type='revolute'>
+      <pose relative_to='base_link'>-0.197113852197734 -0.045130381561883301 -0.15340492634747599 0 0 0</pose>
+      <parent>base_link</parent>
+      <child>RR_Hip_Link</child>
+      <axis>
+        <xyz>-1 0 0</xyz>
+        <limit>
+          <lower>-0.087266499999999997</lower>
+          <upper>0.436332</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='RR_Hip_Link'>
+      <pose relative_to='RR_H_F'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.0166589553386252 0.0029800236681451599 -1.9041768550831499e-08 0 0 0</pose>
+        <mass>0.023862409804887699</mass>
+        <inertia>
+          <ixx>5.6796289944201399e-06</ixx>
+          <ixy>1.6833791043456099e-07</ixy>
+          <ixz>-1.88703744978195e-12</ixz>
+          <iyy>1.0577366722644201e-05</iyy>
+          <iyz>1.6926098832887099e-12</iyz>
+          <izz>8.0840792000365903e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name='RR_Hip_Link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/RR_Hip_Link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='RR_Hip_Link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/RR_Hip_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.627451003 0.627451003 0.627451003 1</diffuse>
+          <ambient>0.627451003 0.627451003 0.627451003 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='RR_H_S' type='revolute'>
+      <pose relative_to='RR_Hip_Link'>0.0279999999999999 0 0 0 0 0</pose>
+      <parent>RR_Hip_Link</parent>
+      <child>RR_Thigh_Link</child>
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <limit>
+          <lower>-1.13446</lower>
+          <upper>-0.436332</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='RR_Thigh_Link'>
+      <pose relative_to='RR_H_S'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.078231373489860798 -0.034053224038266001 0.00080322494859469396 0 0 0</pose>
+        <mass>0.25809996913650202</mass>
+        <inertia>
+          <ixx>3.5261669821079699e-05</ixx>
+          <ixy>-1.6684308149727599e-09</ixy>
+          <ixz>-2.3452481589572001e-08</ixz>
+          <iyy>7.6878947992317206e-05</iyy>
+          <iyz>2.4685658631970701e-09</iyz>
+          <izz>5.3524833051181e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='RR_Thigh_Link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/RR_Thigh_Link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='RR_Thigh_Link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/RR_Thigh_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.941176474 0.941176474 0.941176474 1</diffuse>
+          <ambient>0.941176474 0.941176474 0.941176474 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='RR_T_K' type='revolute'>
+      <pose relative_to='RR_Thigh_Link'>0.14949999552057799 0 0 0 0 0</pose>
+      <parent>RR_Thigh_Link</parent>
+      <child>RR_Tibia_Link</child>
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <limit>
+          <lower>0.73303799999999997</lower>
+          <upper>1.8675022999999999</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='RR_Tibia_Link'>
+      <pose relative_to='RR_T_K'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-0.105065862869079 -0.0046185013869238902 -0.0675070872970608 0 0 0</pose>
+        <mass>0.053931582587971302</mass>
+        <inertia>
+          <ixx>2.2027133576934501e-05</ixx>
+          <ixy>-8.5812817157103298e-07</ixy>
+          <ixz>-2.0491824712649301e-05</ixz>
+          <iyy>5.9688434165484599e-05</iyy>
+          <iyz>-5.53593341146132e-07</iyz>
+          <izz>4.0762045122691201e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='RR_Tibia_Link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/RR_Tibia_Link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='RR_Tibia_Link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/RR_Tibia_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.941176474 0.941176474 0.941176474 1</diffuse>
+          <ambient>0.941176474 0.941176474 0.941176474 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='RR_T_A' type='revolute'>
+      <pose relative_to='RR_Tibia_Link'>-0.27174999999999999 0.0044999999999999997 -0.17458000000000001 0 -0.39999999999999997 0</pose>
+      <parent>RR_Tibia_Link</parent>
+      <child>RR_Foot_Link</child>
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <mimic joint='RR_T_K'>
+          <multiplier>-1</multiplier>
+          <offset>0</offset>
+          <reference>0</reference>
+        </mimic>
+        <limit>
+          <lower>-1.5709630000000001</lower>
+          <upper>1.5709630000000001</upper>
+          <effort>33.5</effort>
+          <velocity>8.7266999999999992</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='RR_Foot_Link'>
+      <pose relative_to='RR_T_A'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.0498806283679974 -0.013500005322470801 -0.017222378504160599 0 0 0</pose>
+        <mass>0.071600618032522198</mass>
+        <inertia>
+          <ixx>1.38200477748177e-05</ixx>
+          <ixy>-9.0403741439407305e-12</ixy>
+          <ixz>1.181945043211e-05</ixz>
+          <iyy>4.6545192319748101e-05</iyy>
+          <iyz>2.5523299876960102e-12</iyz>
+          <izz>4.39714652397413e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name='RR_Foot_Link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/RR_Foot_Link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='RR_Foot_Link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://husky_description/meshes/RR_Foot_Link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.941176474 0.941176474 0.941176474 1</diffuse>
+          <ambient>0.941176474 0.941176474 0.941176474 1</ambient>
+        </material>
+      </visual>
+    </link>
+
+
+
+  <plugin
+    filename="gz-sim-joint-state-publisher-system"
+    name="gz::sim::systems::JointStatePublisher">
+    
+    <topic>joint_states</topic> 
+    
+    <joint_name>FR_H_F</joint_name>
+    <joint_name>FR_H_S</joint_name>
+    <joint_name>FR_T_K</joint_name>
+    <joint_name>FR_T_A</joint_name>
+    
+    <joint_name>FL_H_F</joint_name>
+    <joint_name>FL_H_S</joint_name>
+    <joint_name>FL_T_K</joint_name>
+    <joint_name>FL_T_A</joint_name>
+    
+    <joint_name>RR_H_F</joint_name>
+    <joint_name>RR_H_S</joint_name>
+    <joint_name>RR_T_K</joint_name>
+    <joint_name>RR_T_A</joint_name>
+    
+    <joint_name>RL_H_F</joint_name>
+    <joint_name>RL_H_S</joint_name>
+    <joint_name>RL_T_K</joint_name>
+    <joint_name>RL_T_A</joint_name>
+
+  </plugin>
+
+  </model>
+</sdf>
